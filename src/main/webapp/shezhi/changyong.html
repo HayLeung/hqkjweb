@@ -1,0 +1,237 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+<title></title>
+<link href="logo.ico" rel="SHORTCUT ICON" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=8">
+<link href="../assets/css/dpl-min.css" rel="stylesheet" type="text/css" />
+<link href="../assets/css/bui-min.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+body{ height:1900px;}
+.content{ width:450px; float:left; box-sizing:border-box;border:1px solid #ddd; position:absolute;}
+.row input[type="text"],select{ float:right; margin-right:15px;}
+.row{ box-sizing:border-box; padding:0 20px; margin:0;}
+.row div{padding:8px 0;}
+.row div:hover{ background:#f0f0f0;}
+.pagination-right{ margin-top:15px;}
+.img{ width:600px;}
+.img label{ float:left;}
+.img input,.img select{clear:both; margin-left:5px;}
+</style>
+</head>
+<body>
+<div class="actions-bar">常用参数</div>
+<div class="content" style="top:60px; left:20px;">
+  <div class="actions-bar">汇报参数</div>
+  <div class="row">
+    <div class="row"><label class="checkbox"><input type="checkbox">位置汇报策略</label><input type="text" class="control-text"></div>
+    <div class="row"><label class="checkbox"><input type="checkbox">位置汇报方案</label><input type="text" class="control-text"></div>
+    <div class="row"><label class="checkbox"><input type="checkbox">驾驶员未登录汇报时间间隔（秒）</label><input type="text" class="control-text"></div>
+    <div class="row"><label class="checkbox"><input type="checkbox">休眠时汇报时间间隔（秒）</label><input type="text" class="control-text"></div>
+    <div class="row"><label class="checkbox"><input type="checkbox">紧急报警时汇报时间间隔（秒）</label><input type="text" class="control-text"></div>
+    <div class="row"><label class="checkbox"><input type="checkbox">缺省时间汇报间隔（秒）</label><input type="text" class="control-text"></div>
+    <div class="row"><label class="checkbox"><input type="checkbox">缺省距离汇报间隔（秒）</label><input type="text" class="control-text"></div>
+    <div class="row"><label class="checkbox"><input type="checkbox">驾驶员未登录汇报距离间隔（米）</label><input type="text" class="control-text"></div>
+    <div class="row"><label class="checkbox"><input type="checkbox">休眠时汇报距离间隔（米）</label><input type="text" class="control-text"></div>
+    <div class="row"><label class="checkbox"><input type="checkbox">紧急报警时汇报距离间隔（米）</label><input type="text" class="control-text"></div>
+    <div class="row"><label class="checkbox"><input type="checkbox">拐点补传角度</label><input type="text" class="control-text"></div>
+    <div class="row"><label class="checkbox"><input type="checkbox">电子围栏半径（米）</label><input type="text" class="control-text"></div>
+  </div>
+  <div class="pagination-right actions-bar">
+    <button class="button">重置所有参数</button>
+    <button class="button button-info">查询所有参数</button>
+    <button class="button button-success">设置参数</button>
+  </div>
+</div>
+<div class="content"  style="top:620px; left:20px;">
+  <div class="actions-bar">车辆参数</div>
+  <div class="row">
+    <div class="row"><label class="checkbox"><input type="checkbox">车辆里程表读数（1/10km）</label><input type="text" class="control-text"></div>
+    <div class="row"><label class="checkbox"><input type="checkbox">车辆所在的省域ID</label><input type="text" class="control-text"></div>
+    <div class="row"><label class="checkbox"><input type="checkbox">车辆所在的市域ID</label><input type="text" class="control-text"></div>
+    <div class="row"><label class="checkbox"><input type="checkbox">车牌号</label><input type="text" class="control-text"></div>
+    <div class="row"><label class="checkbox"><input type="checkbox">车辆颜色</label><input type="text" class="control-text"></div>
+  </div>
+  <div class="pagination-right actions-bar">
+    <button class="button">重置所有参数</button>
+    <button class="button button-info">查询所有参数</button>
+    <button class="button button-success">设置参数</button>
+  </div>
+</div> 
+<div class="content"  style="top:915px; left:20px;">
+  <div class="actions-bar">多媒体参数</div>
+  <div class="row">
+    <div class="row"><label class="checkbox"><input type="checkbox">图像/视频质量（1-10,1最好）</label><input type="text" class="control-text"></div>
+    <div class="row"><label class="checkbox"><input type="checkbox">亮度（0-255）</label><input type="text" class="control-text"></div>
+    <div class="row"><label class="checkbox"><input type="checkbox">对比度（0-127）</label><input type="text" class="control-text"></div>
+    <div class="row"><label class="checkbox"><input type="checkbox">饱和度（0-127）</label><input type="text" class="control-text"></div>
+    <div class="row"><label class="checkbox"><input type="checkbox">色度（0-255）</label><input type="text" class="control-text"></div>
+  </div>
+  <div class="pagination-right actions-bar">
+    <button class="button">重置所有参数</button>
+    <button class="button button-info">查询所有参数</button>
+    <button class="button button-success">设置参数</button>
+  </div>
+</div>  
+
+<div class="content" style="top:60px; left:490px;">
+  <div class="actions-bar">通话参数</div>
+  <div class="row">
+    <div class="row"><label class="checkbox"><input type="checkbox">监控平台电话号码</label><input type="text" class="control-text"></div>
+    <div class="row"><label class="checkbox"><input type="checkbox">复位电话号码</label><input type="text" class="control-text"></div>
+    <div class="row"><label class="checkbox"><input type="checkbox">恢复出厂设置电话号码</label><input type="text" class="control-text"></div>
+    <div class="row"><label class="checkbox"><input type="checkbox">监控平台SMS电话号码</label><input type="text" class="control-text"></div>
+    <div class="row"><label class="checkbox"><input type="checkbox">接收终端SMS文本报警号码</label><input type="text" class="control-text"></div>
+    <div class="row">
+      <label class="checkbox"><input type="checkbox">终端电话接听策略</label>
+      <select>
+              <option>请选择</option>
+              <option>请选择</option>
+              <option>请选择</option>
+              <option>请选择</option>
+      </select>
+    </div>
+    <div class="row"><label class="checkbox"><input type="checkbox">每次最长通话时间（秒）</label><input type="text" class="control-text"></div>
+    <div class="row"><label class="checkbox"><input type="checkbox">当月最长通话时间（秒）</label><input type="text" class="control-text"></div>
+    <div class="row"><label class="checkbox"><input type="checkbox">监听电话号码</label><input type="text" class="control-text"></div>
+    <div class="row"><label class="checkbox"><input type="checkbox">监管平台特权短信号码</label><input type="text" class="control-text"></div>
+  </div>
+  <div class="pagination-right actions-bar">
+    <button class="button">重置所有参数</button>
+    <button class="button button-info">查询所有参数</button>
+    <button class="button button-success">设置参数</button>
+  </div>
+</div>
+<div class="content"  style="top:563px; left:490px;">
+  <div class="actions-bar">消息参数</div>
+  <div class="row">
+    <div class="row"><label class="checkbox"><input type="checkbox">终端心跳发送间隔（秒）</label><input type="text" class="control-text"></div>
+    <div class="row"><label class="checkbox"><input type="checkbox">TCP消息应答超时时间（秒）</label><input type="text" class="control-text"></div>
+    <div class="row"><label class="checkbox"><input type="checkbox">TCP消息重传次数</label><input type="text" class="control-text"></div>
+    <div class="row"><label class="checkbox"><input type="checkbox">UDP消息应答超时时间（秒）</label><input type="text" class="control-text"></div>
+    <div class="row"><label class="checkbox"><input type="checkbox">UDP消息重传次数</label><input type="text" class="control-text"></div>
+    <div class="row"><label class="checkbox"><input type="checkbox">SMS消息应答超时时间（秒）</label><input type="text" class="control-text"></div>
+    <div class="row"><label class="checkbox"><input type="checkbox">SMS消息重传次数</label><input type="text" class="control-text"></div>
+    <div class="row"><label class="checkbox"><input type="checkbox">开机语音提示信息内容</label><input type="text" class="control-text"></div>
+    <div class="row"><label class="checkbox"><input type="checkbox">关机语音提示信息内容</label><input type="text" class="control-text"></div>
+  </div>
+  <div class="pagination-right actions-bar">
+    <button class="button">重置所有参数</button>
+    <button class="button button-info">查询所有参数</button>
+    <button class="button button-success">设置参数</button>
+  </div>
+</div> 
+<div class="content img"  style="top:1215px; left:20px;">
+  <div class="actions-bar">定时拍照</div>
+  <div class="row">
+    <div class="row">
+      <label>拍摄通道1：</label>
+      <label class="">拍照开关标志
+      <select class="input-small"><option>不允许</option><option>储存</option></select></label>
+      <label class="">拍照开关标志
+      <select class="input-small"><option>不允许</option><option>储存</option></select></label>
+      <label>定时间隔<input type="text" class="input-small control-text"></label>
+    </div>
+    <div class="row">
+      <label>拍摄通道2：</label>
+      <label class="">拍照开关标志
+      <select class="input-small"><option>不允许</option><option>储存</option></select></label>
+      <label class="">拍照开关标志
+      <select class="input-small"><option>不允许</option><option>储存</option></select></label>
+      <label>定时间隔<input type="text" class="input-small control-text"></label>
+    </div>
+    <div class="row">
+      <label>拍摄通道3：</label>
+      <label class="">拍照开关标志
+      <select class="input-small"><option>不允许</option><option>储存</option></select></label>
+      <label class="">拍照开关标志
+      <select class="input-small"><option>不允许</option><option>储存</option></select></label>
+      <label>定时间隔<input type="text" class="input-small control-text"></label>
+    </div>
+    <div class="row">
+      <label>拍摄通道4：</label>
+      <label class="">拍照开关标志
+      <select class="input-small"><option>不允许</option><option>储存</option></select></label>
+      <label class="">拍照开关标志
+      <select class="input-small"><option>不允许</option><option>储存</option></select></label>
+      <label>定时间隔<input type="text" class="input-small control-text"></label>
+    </div>
+    <div class="row">
+      <label>拍摄通道5：</label>
+      <label class="">拍照开关标志
+      <select class="input-small"><option>不允许</option><option>储存</option></select></label>
+      <label class="">拍照开关标志
+      <select class="input-small"><option>不允许</option><option>储存</option></select></label>
+      <label>定时间隔<input type="text" class="input-small control-text"></label>
+    </div>
+    <div class="row">
+      <label class="">定时时间单位
+      <select class="input-small"><option>秒</option><option>分</option></select></label>
+      <label class="">定时时间间隔<input type="text" class="input-small control-text"></label>
+    </div>
+  </div>
+  <div class="actions-bar">定距拍照</div>
+  <div class="row">
+    <div class="row">
+      <label>拍摄通道1：</label>
+      <label class="">拍照开关标志
+      <select class="input-small"><option>不允许</option><option>储存</option></select></label>
+      <label class="">拍照开关标志
+      <select class="input-small"><option>不允许</option><option>储存</option></select></label>
+    </div>
+    <div class="row">
+      <label>拍摄通道2：</label>
+      <label class="">拍照开关标志
+      <select class="input-small"><option>不允许</option><option>储存</option></select></label>
+      <label class="">拍照开关标志
+      <select class="input-small"><option>不允许</option><option>储存</option></select></label>
+    </div>
+    <div class="row">
+      <label>拍摄通道3：</label>
+      <label class="">拍照开关标志
+      <select class="input-small"><option>不允许</option><option>储存</option></select></label>
+      <label class="">拍照开关标志
+      <select class="input-small"><option>不允许</option><option>储存</option></select></label>
+    </div>
+    <div class="row">
+      <label>拍摄通道4：</label>
+      <label class="">拍照开关标志
+      <select class="input-small"><option>不允许</option><option>储存</option></select></label>
+      <label class="">拍照开关标志
+      <select class="input-small"><option>不允许</option><option>储存</option></select></label>
+    </div>
+    <div class="row">
+      <label>拍摄通道5：</label>
+      <label class="">拍照开关标志
+      <select class="input-small"><option>不允许</option><option>储存</option></select></label>
+      <label class="">拍照开关标志
+      <select class="input-small"><option>不允许</option><option>储存</option></select></label>
+    </div>
+    <div class="row">
+      <label class="">定距时间单位
+      <select class="input-small"><option>秒</option><option>分</option></select></label>
+      <label class="">定距时间间隔<input type="text" class="input-small control-text"></label>
+    </div>
+  </div>
+  <div class="pagination-right actions-bar">
+    <button class="button">重置所有参数</button>
+    <button class="button button-info">查询所有参数</button>
+    <button class="button button-success">设置参数</button>
+  </div>
+</div>
+<div class="content"  style="top:1028px; left:490px;">
+  <div class="actions-bar">其他</div>
+  <div class="row">
+    <div class="row"><label class="checkbox"><input type="checkbox">开机语音提示信息内容</label><input type="text" class="control-text"></div>
+    <div class="row"><label class="checkbox"><input type="checkbox">关机语音提示信息内容</label><input type="text" class="control-text"></div>
+  </div>
+  <div class="pagination-right actions-bar">
+    <button class="button">重置所有参数</button>
+    <button class="button button-info">查询所有参数</button>
+    <button class="button button-success">设置参数</button>
+  </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html style="padding-bottom:55px; height:100%;"><!--border-left:1px solid #C3C3D6;-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv=“X-UA-Compatible” content=“IE=8”>
+<link rel="stylesheet" type="text/css" href="../css/style.css"/>
+<link rel="stylesheet" href="../font/css/font-awesome.css"/><!--图片-->
+<script type="text/javascript" src="../js/jquery.min.js"></script>
+<title>操作面板</title>
+</head>
+<body class="operation">
+<!--<div class="title title_fixed">操作面板</div>
+--><div class="look">
+  <form>
+    <div class="inp">
+      <i class="fa fa-search"></i>
+      <input type="text" placeholder="输入车牌"><!--要求：点击查询后，input的内容显示查找车辆（不清除）-->
+      <button>查询</button>
+    </div>
+  </form>
+  <div class="super"><i class="fa fa-search-plus"></i>高级查询</div>
+</div>
+  
+<div class="tree">
+  <div class="sup_look">
+    <div class="title">高级查询</div>
+    <form>
+      <div class="look_info">车架号：
+        <input type="text">
+      </div>
+      <div class="look_info">发动机号：
+        <input type="text">
+      </div>
+      <div class="look_info">SIM卡号：
+        <input type="text">
+      </div>
+      <div class="look_info">企业名称：
+        <input type="text">
+      </div>
+      <div class="look_info"><span class="close">关闭</span>
+        <button>查询</button>
+      </div>
+    </form>
+  </div>
+
+  <!--车辆列表  开始-->
+  <ul id="menu_zzjs_net">
+    <li>
+      <label>
+        <input type="checkbox" value="123456">
+        <a href="javascript:;">一级菜单</a><span class="nb">100 / 100</span></label>
+      <ul class="two">
+        <li>
+          <label>
+            <input type="checkbox" value="123456">
+            <a href="javascript:;">二级菜单</a><span class="nb">100 / 100</span></label>
+          <ul class="two">
+            <li>
+              <label>
+                <input type="checkbox" value="123456">
+                <a href="javascript:;">三级菜单</a><span class="nb">100 / 100</span></label>
+              <ul class="two">
+                <li>
+                  <label class="cab"><!--class 名为右键的目标-->
+                    <input type="checkbox" value="123456">
+                    <a href="javascript:;"><i class="fa fa-cab blue"></i>出租车在线行驶</a></label><!--blue  在线行驶-->
+                </li>
+                <li>
+                  <label class="cab">
+                    <input type="checkbox" value="123456">
+                    <a href="javascript:;"><i class="fa fa-cab green"></i>出租车在线停留</a></label><!--green  在线停留-->
+                </li>
+                <li>
+                  <label class="cab">
+                    <input type="checkbox" value="123456">
+                    <a href="javascript:;"><i class="fa fa-cab red"></i>出租车报警</a></label><!--red  报警-->
+                </li>
+                <li>
+                  <label class="cab">
+                    <input type="checkbox" value="123456">
+                    <a href="javascript:;"><i class="fa fa-cab gray"></i>出租车不在线</a></label><!--gray  不在线-->
+                </li>
+                <li>
+                  <label class="cab">
+                    <input type="checkbox" value="123456">
+                    <a href="javascript:;"><i class="fa fa-car gray"></i>其他</a></label>
+                </li>
+                <li>
+                  <label class="cab">
+                    <input type="checkbox" value="123456">
+                    <a href="javascript:;"><i class="fa fa-truck blue"></i>危货普货</a></label>
+                </li>
+                <li>
+                  <label class="cab">
+                    <input type="checkbox" value="123456">
+                    <a href="javascript:;"><i class="fa fa-bus green"></i>客车校车旅游车公交</a></label>
+                </li>
+                <li>
+                  <label class="cab">
+                    <input type="checkbox" value="123456">
+                    <a href="javascript:;"><i class="fa fa-bus green"></i>客车校车旅游车公交</a></label>
+                </li>
+                <li>
+                  <label class="cab">
+                    <input type="checkbox" value="123456">
+                    <a href="javascript:;"><i class="fa fa-bus green"></i>客车校车旅游车公交</a></label>
+                </li>
+                <li>
+                  <label class="cab">
+                    <input type="checkbox" value="123456">
+                    <a href="javascript:;"><i class="fa fa-bus green"></i>客车校车旅游车公交</a></label>
+                </li>
+                <li>
+                  <label class="cab">
+                    <input type="checkbox" value="123456">
+                    <a href="javascript:;"><i class="fa fa-bus green"></i>客车校车旅游车公交</a></label>
+                </li>
+                <li>
+                  <label class="cab">
+                    <input type="checkbox" value="123456">
+                    <a href="javascript:;"><i class="fa fa-bus green"></i>客车校车旅游车公交</a></label>
+                </li>
+                <li>
+                  <label class="cab">
+                    <input type="checkbox" value="123456">
+                    <a href="javascript:;"><i class="fa fa-bus green"></i>客车校车旅游车公交</a></label>
+                </li>
+                <li>
+                  <label class="cab">
+                    <input type="checkbox" value="123456">
+                    <a href="javascript:;"><i class="fa fa-bus green"></i>客车校车旅游车公交</a></label>
+                </li>
+                <li>
+                  <label class="cab">
+                    <input type="checkbox" value="123456">
+                    <a href="javascript:;"><i class="fa fa-bus green"></i>客车校车旅游车公交</a></label>
+                </li>
+                <li>
+                  <label class="cab">
+                    <input type="checkbox" value="123456">
+                    <a href="javascript:;"><i class="fa fa-bus green"></i>客车校车旅游车公交</a></label>
+                </li>
+                <li>
+                  <label class="cab">
+                    <input type="checkbox" value="123456">
+                    <a href="javascript:;"><i class="fa fa-bus green"></i>客车校车旅游车公交</a></label>
+                </li>
+                <li>
+                  <label class="cab">
+                    <input type="checkbox" value="123456">
+                    <a href="javascript:;"><i class="fa fa-bus green"></i>客车校车旅游车公交</a></label>
+                </li>
+                <li>
+                  <label class="cab">
+                    <input type="checkbox" value="123456">
+                    <a href="javascript:;"><i class="fa fa-bus green"></i>客车校车旅游车公交</a></label>
+                </li>
+                <li>
+                  <label class="cab">
+                    <input type="checkbox" value="123456">
+                    <a href="javascript:;"><i class="fa fa-bus green"></i>客车校车旅游车公交</a></label>
+                </li>
+                <li>
+                  <label class="cab">
+                    <input type="checkbox" value="123456">
+                    <a href="javascript:;"><i class="fa fa-bus green"></i>客车校车旅游车公交</a></label>
+                </li>
+                <li>
+                  <label class="cab">
+                    <input type="checkbox" value="123456">
+                    <a href="javascript:;"><i class="fa fa-bus green"></i>客车校车旅游车公交</a></label>
+                </li>
+                <li>
+                  <label class="cab">
+                    <input type="checkbox" value="123456">
+                    <a href="javascript:;"><i class="fa fa-bus green"></i>客车校车旅游车公交</a></label>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <label>
+            <input type="checkbox" value="123456">
+            <a href="javascript:;">二级菜单</a><span class="nb">100 / 100</span></label>
+          <ul class="two">
+            <li>
+              <label>
+                <input type="checkbox" value="123456">
+                <a href="javascript:;">三级菜单</a><span class="nb">100 / 100</span></label>
+              <ul class="two">
+                <li>
+                  <label class="cab">
+                    <input type="checkbox" value="123456">
+                    <a href="javascript:;"><i class="fa fa-cab"></i>吉A123456</a></label>
+                </li>
+                <li>
+                  <label class="cab">
+                    <input type="checkbox" value="123456">
+                    <a href="javascript:;"><i class="fa fa-cab"></i>吉A123456</a></label>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <label>
+        <input type="checkbox" value="123456">
+        <a href="javascript:;">一级菜单</a><span class="nb">100 / 100</span></label>
+      <ul class="two">
+        <li>
+          <label>
+            <input type="checkbox" value="123456">
+            <a href="javascript:;">二级菜单</a><span class="nb">100 / 100</span></label>
+          <ul class="two">
+            <li>
+              <label>
+                <input type="checkbox" value="123456">
+                <a href="javascript:;">三级菜单</a><span class="nb">100 / 100</span></label>
+              <ul class="two">
+                <li>
+                  <label class="cab">
+                    <input type="checkbox" value="123456">
+                    <a href="javascript:;"><i class="fa fa-cab"></i>吉A123456</a></label>
+                </li>
+                <li>
+                  <label class="cab">
+                    <input type="checkbox" value="123456">
+                    <a href="javascript:;"><i class="fa fa-cab"></i>吉A123456</a></label>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <label>
+            <input type="checkbox" value="123456">
+            <a href="javascript:;">二级菜单</a><span class="nb">100 / 100</span></label>
+          <ul class="two">
+            <li>
+              <label>
+                <input type="checkbox" value="123456">
+                <a href="javascript:;">三级菜单</a><span class="nb">100 / 100</span></label>
+              <ul class="two">
+                <li>
+                  <label class="cab">
+                    <input type="checkbox" value="123456">
+                    <a href="javascript:;"><i class="fa fa-cab"></i>吉A123456</a></label>
+                </li>
+                <li>
+                  <label class="cab">
+                    <input type="checkbox" value="123456">
+                    <a href="javascript:;"><i class="fa fa-cab"></i>吉A123456</a></label>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+<!--车辆列表  结束--> 
+<!--车辆信息  开始 暂时隐藏-->
+<div class="zzsc" style="display:none;">
+  <div class="tab">
+    <a href="javascript:;" class="on">基本信息</a> 
+    <a href="javascript:;">车辆状态</a> 
+    <a href="javascript:;">详细信息</a> 
+  </div>
+  <div class="content">
+    <ul>
+      <li style="display:block;">
+        <p><span>车牌号码：吉A12345</span>&nbsp;&ensp;<span>车牌颜色：</span></p>
+        <p>所属分组：长春实验小学</p>
+        <p>时间：2016-11-11 16:24</p>
+        <p><span>经度：125.311871</span>&nbsp;&ensp;<span>纬度：43.911435</span></p>
+        <p>速度：100km/h</p>
+        <p class="red">报警：</p>
+      </li>
+      <li>
+        <p><span class="width50">ACC：</span><span class="width50">定位：</span></p>
+        <p><span class="width50">油门：</span><span class="width50">电路：</span></p>
+        <p><span class="width50">车门：</span><span class="width50">前门：</span></p>
+        <p><span class="width50">后门：</span><span class="width50">中门：</span></p>
+        <p>驾驶席门：</p>
+      </li>
+      <li>
+        <p>司机1：</p>
+        <p>卡号：</p>
+        <p>从业资格证号：</p>
+        <p>司机2:</p>
+        <p>从业资格证号：</p>
+        <p><span class="width50">设备ID：</span><span class="width50">SIM卡号：</span></p>
+      </li>
+    </ul>
+  </div>
+</div>
+<!--车辆信息  结束-->
+<script type="text/javascript" src="../js/tree.js"></script>
+</body>
+</html>

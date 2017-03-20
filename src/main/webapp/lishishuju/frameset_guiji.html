@@ -1,0 +1,47 @@
+<!DOCTYPE HTML>
+<html style="background:#fff">
+<meta charset="utf-8">
+<style>
+* {
+	padding: 0;
+	margin: 0;
+}
+</style>
+<script>
+var t;
+var stopFlag=false;
+function timer1()
+{
+ var target=document.getElementById("guiji_left");
+ target.setAttribute("rows",target.rows);
+ t=setTimeout("timer1()",500);
+}
+window.onload=function(){
+document.getElementById("guiji_left").onmousedown=function(
+){
+	clearTimeout(t);
+	stopFlag=true;
+};
+document.getElementById("guiji_left").onmouseup=function(
+){
+	if(stopFlag)
+	setTimeout("timer1()",1);
+	else{
+	clearTimeout(t);
+	setTimeout("timer1()",1);
+	}
+		stopFlag=false;
+};
+ setTimeout("timer1()",100);
+
+}
+</script>
+<frameset id="target" cols="*,300" bordercolor="#fff">
+  <frameset id="guiji_left" rows="500,*"   frameborder="0"  border="0"   bordercolor="#fff" >
+    <frame id="" src="map.html" border="0"   frameborder="0" scrolling="auto" style="border: #d2e0f0 1px solid;"/>
+    <frame id="" src="map_bottom.html" border="0"   frameborder="0" scrolling="auto" style="border: #d2e0f0 1px solid;"/>
+  </frameset>
+  <frame noresize="noresize" src="guiji_right.html" border="0"   frameborder="0" scrolling="auto" style="border: #d2e0f0 1px solid;"/>
+</frameset>
+<noframes></noframes>
+</html>

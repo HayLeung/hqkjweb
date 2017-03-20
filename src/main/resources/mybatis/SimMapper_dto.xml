@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ycxc.vtsp.sys.dao.SimMapper">
+  <resultMap id="simMap" type="com.ycxc.vtsp.sys.domain.entity.Sim">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="sim_no" jdbcType="VARCHAR" property="simNo" />
+    <result column="sim_type" jdbcType="TINYINT" property="simType" />
+    <result column="lease" jdbcType="TINYINT" property="lease" />
+    <result column="rent" jdbcType="DECIMAL" property="rent" />
+    <result column="packagevoice" jdbcType="INTEGER" property="packagevoice" />
+    <result column="packageflow" jdbcType="INTEGER" property="packageflow" />
+    <result column="carrier" jdbcType="TINYINT" property="carrier" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="ICCID" jdbcType="VARCHAR" property="iccid" />
+    <result column="status" jdbcType="TINYINT" property="status" />
+    <result column="input_time" jdbcType="TIMESTAMP" property="inputTime" />
+    <result column="use_time" jdbcType="TIMESTAMP" property="useTime" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+  </resultMap>
+
+
+  <sql id="validation">
+      /*开始时间*/
+      <if test="startTime != null and startTime != ''">
+          and use_time <![CDATA[ >= ]]> #{startTime}
+      </if>
+      /*结束时间*/
+      <if test="stopTime != null and stopTime != ''">
+          and use_time <![CDATA[ <= ]]> #{stopTime}
+      </if>
+      /*sim卡类型*/
+      <if test="simType != null and simType != ''">
+          and sim_type =  #{simType}
+      </if>
+      /*运营商*/
+      <if test="carrier != null and carrier != ''">
+        and carrier =  #{carrier}
+      </if>
+      /*使用状态*/
+      <if test="status != null and status != ''">
+        and status =  #{status}
+      </if>
+      /*校验SIM卡号 代理商 ICCID*/
+      <if test="searchContent != null and searchContent != ''">
+        and (
+              sim_no like concat('%',#{searchContent},'%') Or
+              user_id = #{searchContent} OR
+              ICCID like concat('%',#{searchContent},'%')
+        )
+      </if>
+  </sql>
+
+
+  <!--分页查询SIM卡信息-->
+  <select id="querySimList" parameterType="java.util.Map" resultMap="simMap">
+      select * from sim WHERE 1=1
+      <include refid="validation"/>
+  </select>
+
+    <!--校验SIM号是否存在-->
+    <select id="querySimExist" parameterType="java.util.Map" resultType="java.lang.Integer">
+        SELECT count(id) from SIM where sim_no = #{simNo}
+        /*判断ID是否为空*/
+        <if test="id != null and id != ''">
+            and id <![CDATA[ <> ]]> #{id}
+        </if>
+    </select>
+
+
+
+</mapper>

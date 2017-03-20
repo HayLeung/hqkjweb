@@ -1,0 +1,99 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title></title>
+<link href="../assets/css/dpl-min.css" rel="stylesheet" type="text/css" />
+<link href="../assets/css/bui-min.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="../js/jquery-1.9.1.min.js"></script>
+<script src="../js/sea.js"></script><!--表格、弹出窗口所需-->
+<script src="../js/config.js"></script><!--表格、弹出窗口所需-->
+<style>
+.a{ color:#0000ff; padding:0 5px; text-decoration:underline;cursor:pointer;}
+</style>
+</head>
+<body>
+<div class="actions-bar">
+  <div class="row">
+    <button class="button button-warning button-small">导出</button>
+    <button class="button button-success button-small">打印</button>
+    <button class="button button-danger button-small">批量处理</button>
+    <span>时间范围：</span>
+    <select class="input-normal">
+      <option>近15分钟</option>
+      <option></option>
+      <option></option>
+      <option></option>
+    </select>
+    <span>报警处理状态：</span>
+    <select class="input-normal">
+      <option>未处理</option>
+      <option></option>
+      <option></option>
+      <option></option>
+    </select>
+    <span>报警类型：</span>
+    <select class="input-normal">
+      <option>全选</option>
+      <option></option>
+      <option></option>
+      <option></option>
+    </select>
+    <button class="button button-info button-small">查询</button>
+  </div>
+</div>
+<div class="demo-content">
+  <div id="grid"> </div>
+  <!-- script start --> 
+  <script type="text/javascript">
+              BUI.use(['bui/grid','bui/data'],function(Grid,Data){
+                var Grid = Grid,
+              Store = Data.Store,
+              columns = [
+                {title : '编号',dataIndex :'a', width:100},
+                {title : '车牌号',dataIndex :'b', width:100},
+				{title : '报警信息',dataIndex :'c', width:100},
+				{title : '处理状态',dataIndex :'d', width:100},
+				{title : '处理人',dataIndex :'e', width:100},
+				{title : '处理时间',dataIndex :'f', width:100},
+                {title : '处理方式',dataIndex :'g', width:100},
+				{title : '报警开始时间',dataIndex :'h', width:100},
+				{title : '开始速度（km/h）',dataIndex :'i', width:100},
+				{title : '报警结束时间',dataIndex :'j', width:100},
+				{title : '结束速度（km/h）',dataIndex :'k', width:100},
+              ],
+              data = [{a:'<span class="a role_edit">编辑</span>|<span class="a">删除</span>',},
+			          {a:'<span class="a role_edit">编辑</span>|<span class="a">删除</span>',b:'edd'},
+					  {a:'<span class="a role_edit">编辑</span>|<span class="a">删除</span>',c:'eee',d:2}
+					  ];
+	
+			//分页
+			var store = new Store({
+            data : data,	// 前端分页 数据一定是静态数据
+            autoLoad:true,
+            remoteSort : true,
+			      pageSize:20		// 需要在store中 配置pageSize
+          }),
+          grid = new Grid.Grid({
+            render:'#grid',
+            columns : columns,
+			forceFit: true,	// 列宽按百分比自适应
+			plugins : [Grid.Plugins.CheckSelection,Grid.Plugins.ColumnResize],
+            // 底部工具栏
+            bbar:{
+                // pagingBar:表明包含分页栏
+				/*pagingBar: {
+					xclass: 'pagingBar'					
+				}*/
+                pagingBar:true
+            },
+            store : store
+          });
+ 
+        grid.render();
+			
+          });
+        </script> 
+  <!-- script end --> </div>
+</body>
+</html>

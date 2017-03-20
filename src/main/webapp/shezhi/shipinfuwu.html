@@ -1,0 +1,169 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title></title>
+<link href="../assets/css/dpl-min.css" rel="stylesheet" type="text/css" />
+<link href="../assets/css/bui-min.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="../js/jquery-1.9.1.min.js"></script>
+<script src="../js/sea.js"></script><!--表格、弹出窗口所需-->
+<script src="../js/config.js"></script><!--表格、弹出窗口所需-->
+<style>
+.bui-drag-line{position: absolute;border-left: 1px solid #ccc;}
+.a{ color:#0000ff; padding:0 5px; text-decoration:underline;cursor:pointer;}
+select{ width:150px;}
+</style>
+</head>
+<body>
+<div class="actions-bar">
+  <div class="row">
+    <button class="button button-success button-small new">添加</button>
+    <button class="button button-danger button-small">删除</button>
+  </div>
+</div>
+<div class="demo-content">
+  <div id="grid"> </div>
+  <!-- 此节点内部的内容会在弹出框内显示,默认隐藏此节点 第一个弹出框 id与下面js中取的对应-->
+  <div id="edit_content" style="display:none;">
+    <div class="row-fluid">
+        <form class="form-horizontal">
+        <div class="span11">
+          <div class="control-group">
+            <label class="control-label"><s>*</s>名称：</label>
+            <div class="controls"><input class="input-normal control-text" type="text"></div>
+          </div>
+ 
+          <div class="control-group">
+            <label class="control-label"><s>*</s>服务器端口：</label>
+            <div class="controls"><input class="input-normal control-text" type="text"></div>
+          </div>
+        </div>
+        <div class="span11">
+          <div class="control-group">
+            <label class="control-label"><s>*</s>服务器IP：</label>
+            <div class="controls"><input class="input-normal control-text" type="text"></div>
+          </div>
+ 
+          <div class="control-group">
+            <label class="control-label">备注：</label>
+            <div class="controls"><input class="input-normal control-text" type="text"></div>
+          </div>
+        </div>
+        </form>
+      </div>
+  </div>
+  <!-- 此节点内部的内容会在弹出框内显示,默认隐藏此节点 第二个弹出框 id与下面js中取的对应-->
+  <div id="new_content" style="display:none;">
+        <div class="row-fluid">
+        <form class="form-horizontal">
+        <div class="span11">
+          <div class="control-group">
+            <label class="control-label"><s>*</s>名称：</label>
+            <div class="controls"><input class="input-normal control-text" type="text"></div>
+          </div>
+ 
+          <div class="control-group">
+            <label class="control-label"><s>*</s>服务器端口：</label>
+            <div class="controls"><input class="input-normal control-text" type="text"></div>
+          </div>
+        </div>
+        <div class="span11">
+          <div class="control-group">
+            <label class="control-label"><s>*</s>服务器IP：</label>
+            <div class="controls"><input class="input-normal control-text" type="text"></div>
+          </div>
+ 
+          <div class="control-group">
+            <label class="control-label">备注：</label>
+            <div class="controls"><input class="input-normal control-text" type="text"></div>
+          </div>
+        </div>
+        </form>
+      </div>
+  </div>
+  <!-- script start --> 
+  <script type="text/javascript">
+              BUI.use(['bui/grid','bui/data'],function(Grid,Data){
+                var Grid = Grid,
+              Store = Data.Store,
+              columns = [
+                {title : '操作',dataIndex :'a', width:100},
+                {title : '名称',dataIndex :'b', width:100},
+				{title : '服务器IP',dataIndex :'c', width:100},
+				{title : '服务器端口',dataIndex :'d', width:100},
+              ],
+              data = [{a:'<span class="a edit">编辑</span>|<span class="a">删除</span>'},
+			          {a:'<span class="a edit">编辑</span>|<span class="a">删除</span>',b:'edd'},
+					  {a:'<span class="a edit">编辑</span>|<span class="a">删除</span>',c:'eee',d:2}
+					  
+					  ];
+            var store = new Store({
+                data : data,
+                autoLoad:true
+              }),
+              grid = new Grid.Grid({
+                render:'#grid',
+				 width:'100%',
+                columns : columns,
+                store: store,
+                plugins : [Grid.Plugins.CheckSelection,Grid.Plugins.ColumnResize]  
+              });
+     
+            grid.render();
+			
+			<!--弹出窗口js  开始-->
+			BUI.use(['bui/overlay','bui/form'],function(Overlay,Form){
+			    var form = new Form.Form({
+				   srcNode : '#form'
+			    }).render();
+			    var edit_dialog = new Overlay.Dialog({
+					title:'编辑',
+					width:720,
+					height:200,
+
+					contentId:'edit_content',
+				});
+				var new_dialog = new Overlay.Dialog({
+					title:'添加',
+					width:720,
+					height:200,
+
+					contentId:'new_content',
+				});
+				//dialog.show();
+				$('.edit').on('click',function () {
+				  var sender = $(this),
+					type = sender.text(),
+					effect = {
+					  effect : type,
+					  duration : 400// 
+					  //callback : function(){} ,callback 回调函数
+					};
+		 
+				  edit_dialog.set('effect',effect);
+				  edit_dialog.show();
+		 
+				});
+				
+				$('.new').on('click',function () {
+				  var sender = $(this),
+					type = sender.text(),
+					effect = {
+					  effect : type,
+					  duration : 400// 
+					  //callback : function(){} ,callback 回调函数
+					};
+		 
+				  new_dialog.set('effect',effect);
+				  new_dialog.show();
+		 
+				});
+			});
+			<!--弹出窗口内容结束-->
+			
+          });
+        </script> 
+  <!-- script end --> 
+</div>
+</body>
+</html>

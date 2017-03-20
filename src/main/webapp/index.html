@@ -1,0 +1,284 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<title>寰旗科技</title>
+<link href="logo.ico" rel="SHORTCUT ICON" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="assets/css/dpl-min.css" rel="stylesheet" type="text/css" />
+<link href="assets/css/bui-min.css" rel="stylesheet" type="text/css" />
+<link href="assets/css/main-min.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="font/css/font-awesome.css"/><!--图片-->
+<script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="js/index.js"></script>
+</head>
+<body style="max-height:500px;" >
+<!--头部  开始-->
+<div class="header">
+  <div class="dl-title">
+    <img src="images/logo.png"/>寰旗车辆卫星定位服务平台</div>
+    <div class="dl-log">欢迎您，<span class="dl-log-user">XXX</span>
+    <a href="###" title="注销" class="dl-log-quit">[注销]</a>
+    <a href="###" title="退出系统" class="dl-log-quit">[退出]</a> 
+  </div>
+</div>
+<!--头部  结束--> 
+<!--导航  开始-->
+<div class="content">
+  <div class="dl-main-nav">
+    <ul id="J_Nav"  class="nav-list ks-clear">
+      <li id="home" class="nav-item dl-selected"><i class="fa fa-home fa-2x"></i>首页</li>
+      <li id="targrt" class="nav-item"><i class="fa fa-map-marker"></i>目标监控</li>
+      <li class="nav-item"><i class="fa fa-bell"></i>报警中心</li>
+      <li class="nav-item"><i class="fa fa-history"></i>历史数据管理</li>
+      <li class="nav-item"><i class="fa fa-life-saver"></i>电子围栏</li>
+      <li class="nav-item"><i class="fa fa-area-chart"></i>统计查询</li>
+      <li id="yunying" class="nav-item"><i class="fa fa-cog"></i>运营管理</li>
+      <li id="set" class="nav-item"><i class="fa fa-cogs"></i>设置</li>
+    </ul>
+  </div>
+  <!--导航  结束--> 
+  <!--主题内容  开始-->
+  <ul id="J_NavContent" class="dl-tab-conten">
+  </ul>
+  <!--主题内容  结束--> 
+  <!--右侧操作面板  开始-->
+  <div class="target"> 
+    <!--显示/隐藏按钮-->
+    <div class="dl-second-slib-con2">
+      <div class="dl-second-slib2"></div>
+    </div>
+    <div class="dl-second-slib-con3">
+      <div class="dl-second-slib3"></div>
+    </div>
+    <!--车辆列表-->
+    <iframe class="tree" src="home/tree.html" frameborder=no border=0></iframe>
+  </div>
+  <!--右侧操作面板  结束--> 
+</div>
+<script type="text/javascript" src="assets/js/bui-min.js"></script> 
+<!--导航菜单-->
+<script>
+     BUI.use('common/main',function(){
+      var config = [{
+          id:'menu',
+		  collapsed:true, //默认收缩左侧的配置项  true收缩  不填写时默认为false
+		  homePage:'home',
+          menu:[{
+              text:'首页内容',
+              items:[
+                {id:'home',text:'首页',href:'home/home.html',closeable : false},
+              ]
+            }]
+          },{
+            id:'search',
+			collapsed:true,
+			homePage:'jk',
+            menu:[{
+                text:'目标监控',
+                items:[
+                {id:'jk',text:'目标监控',href:'jiankong/frameset_jiankong.html',closeable : false},
+				{id:'dd',text:'公交调度',href:'jiankong/',closeable : false},
+                ]
+              }]
+          },{
+            id:'detail',
+            menu:[{
+                text:'报警中心',
+                items:[
+			   	  {id:'',text:'查询报警信息',href:'baojing/chaxunbaojing.html'},
+				  {id:'',text:'报警参数配置',href:''},
+                ]
+              }]
+          },{
+            id:'00',
+            menu:[{
+                text:'历史数据管理',
+                items:[
+                  {id:'',text:'历史轨迹查询',href:'lishishuju/frameset_guiji.html'},
+			   	  {id:'',text:'历史图片查询',href:'lishishuju/tupian.html'},
+				  {id:'',text:'历史视频回放',href:'lishishuju/shipin.html'},
+                ]
+              }]
+          },
+		  {
+            id:'aaa',
+            menu:[{
+                text:'电子围栏',
+                items:[
+                  {id:'',text:'标注管理',href:'weilan/biaozhu.html'},
+			   	  {id:'',text:'区域管理',href:'weilan/quyu.html'},
+				  {id:'',text:'线路管理',href:'weilan/xianlu.html'},
+				  {id:'',text:'下发电子围栏',href:'weilan/xiafa.html'},
+				  {id:'',text:'批量围栏下发',href:'weilan/piliang.html'},
+                ]
+              },
+			  {
+                text:'区域查车',
+                items:[
+                  {id:'',text:'实时区域查车',href:''},
+			   	  {id:'',text:'历史区域查车',href:''},
+                ]
+              },
+			  ]
+          },
+		  {
+            id:'bbb',
+            menu:[{
+                text:'操作日志',
+				collapsed:true,
+                items:[
+                  {id:'',text:'车辆操作日志',href:'tongji/caozuo/cheliang.html'},
+			   	  {id:'',text:'视频操作日志',href:'tongji/caozuo/shipin.html'},
+				  {id:'',text:'用户操作日志',href:'tongji/caozuo/yonghu.html'},
+				  {id:'',text:'车辆信息变更日志',href:'tongji/caozuo/cheliangxinxi.html'},
+                ]
+              },
+			  {
+                text:'检查数据统计',
+				collapsed:true,
+                items:[
+				  {id:'',text:'报警统计',href:'tongji/jiancha/baojingtongji.html'},
+				  {id:'',text:'查岗统计报表',href:'tongji/jiancha/chagangtongji.html'},
+				  {id:'',text:'超速阀值报表',href:'tongji/jiancha/chaosufazhi.html'},
+				  {id:'',text:'车辆超速报表',href:'tongji/jiancha/cheliangchaosu.html'},
+				  {id:'',text:'驾驶员行为报表',href:'tongji/jiancha/jiashiyuanxingwei.html'},
+				  {id:'',text:'违规上报报表',href:'tongji/jiancha/weiguishangbao.html'},
+				  {id:'',text:'异常轨迹报表',href:'tongji/jiancha/yichangguiji.html'},
+				  {id:'',text:'轨迹完整率报表',href:'tongji/jiancha/guijiwanzhenglv.html'},
+				  {id:'',text:'业户综合考核报表',href:'tongji/jiancha/yehuzonghe.html'},
+                ]
+              },
+			  {
+                text:'运营数据统计',
+				collapsed:true,
+                items:[
+                  {id:'',text:'上线率统计',href:'tongji/yunying/shangxianlv.html'},
+			   	  {id:'',text:'里程统计报表',href:'tongji/yunying/lichengtongji.html'},
+				  {id:'',text:'趟数统计报表',href:'tongji/yunying/tangshutongji.html'},
+				  {id:'',text:'停车统计报表',href:'tongji/yunying/tingchetongji.html'},
+				  {id:'',text:'图片统计报表',href:'tongji/yunying/tupiantongji.html'},
+				  {id:'',text:'最后有效GPS位置报表',href:'tongji/yunying/GPS.html'},
+				  {id:'',text:'车辆服务业绩统计',href:'tongji/yunying/cheliangfuwu.html'},
+				  {id:'',text:'服务到期统计',href:'tongji/yunying/fuwudaoqi.html'},
+                ]
+              },
+			  {
+                text:'公交统计',
+				collapsed:true,
+                items:[
+                  {id:'',text:'正班正点统计',href:'tongji/'},
+			   	  {id:'',text:'趟次统计报表',href:'tongji/'},
+				  {id:'',text:'电子路单统计报表',href:'tongji/'},
+				  {id:'',text:'日运行统计报表',href:'tongji/'},
+				  {id:'',text:'线路切换日志报表',href:'tongji/'},
+				  {id:'',text:'发车日志报表',href:'tongji/'},
+                ]
+              }]
+          },
+		  {
+            id:'ccc',
+            menu:[{
+                text:'运营管理',
+                items:[
+				  {id:'',text:'分组管理',href:'yunyingguanli/fenzuguanli.html'},
+				  {id:'',text:'用户管理',href:'yunyingguanli/yonghuguanli.html'},
+				  {id:'',text:'设备管理',href:'yunyingguanli/shebeiguanli.html'},
+				  {id:'',text:'SIM卡管理',href:'yunyingguanli/SIM.html'},
+				  {id:'',text:'车辆管理',href:'yunyingguanli/cheliangguanli.html'},
+				  {id:'',text:'上报平台车辆绑定',href:'shangbao/qiyechedui.html'},
+				  {id:'',text:'数据对接',href:'yunyingguanli/shujuduijie.html'},
+				  {id:'',text:'车辆缴费管理',href:'yunyingguanli/cheliangnafei.html'},
+				  {id:'',text:'公交管理',href:'yunyingguanli/gongjiaoguanli.html'},
+                ]
+              }]
+          },
+		  {
+            id:'ddd',
+            menu:[
+			  {
+              text:'终端设置',
+              items:[
+                {id:'',text:'报警参数',href:'shezhi/baojing.html'},
+				  {id:'',text:'服务器参数',href:'shezhi/fuwuqi.html'},
+				  {id:'',text:'基本参数',href:'shezhi/jibencanshu.html'},
+				  {id:'',text:'多媒体参数',href:'shezhi/duomeiti.html'},
+				  {id:'',text:'拍照设置',href:'shezhi/paizhao.html'},
+				  {id:'',text:'终端设置',href:'shezhi/zhongduan.html'},
+				  {id:'',text:'行车记录仪',href:'shezhi/jiluyi.html'},
+              ]
+            },{
+                text:'提醒设置',
+                items:[
+			   	  {id:'',text:'开机设置',href:'shezhi/kaijishezhi.html'},
+				  {id:'',text:'平台报警参数配置',href:'shezhi/pingtaibaojing.html'},
+				  {id:'',text:'服务到期提醒设置',href:'shezhi/fuwudaoqi.html'},
+				  {id:'',text:'公告通知',href:'shezhi/gonggaotongzhi.html'},
+                ]
+              },
+			  {
+                text:'系统设置',
+                items:[
+			   	  {id:'',text:'视频服务器配置',href:'shezhi/shipinfuwu.html'},
+				  {id:'',text:'修改密码',href:''},
+				  {id:'',text:'主题设置',href:''},
+				  {id:'',text:'使用说明',href:''},
+				  {id:'',text:'关于我们',href:''},
+                ]
+              },
+			]
+          }
+		  ];
+      new PageUtil.MainPage({
+        modulesConfig : config
+      });
+    });
+</script> 
+<!--底部信息栏  开始-->
+<div class="foot">
+  <span>版本：V1.0</span>
+  <span>在线率：89%</span>
+  <span class="red">报警数量：5</span>
+  <span>当前状态：在线</span><!--掉线显示“离线”--> 
+</div>
+<!--底部信息栏  结束-->
+<!--地图下面信息列表右键js功能  开始-->
+<script type="text/javascript">
+var kyoPopupMenu={};
+	kyoPopupMenu = (function(){
+    return {
+        sys: function (obj) {
+			$('.popup_menu').remove();
+            popupMenuApp = $('<div class="popup_menu app-menu" onmouseout=""><ul><li><a menu="menu1">快速拍照</a></li><li><a menu="menu2">下发短信</a></li><li><a menu="menu3">对讲</a></li><li><a menu="menu4">监听</a></li><li><a menu="menu5">人工确认报警</a></li><li><a menu="menu6">处理中</a></li><li><a menu="menu7">不做处理</a></li><li><a menu="menu8">将来处理</a></li></ul></div>')
+			.find('a').attr('href','javascript:;')
+			.end().appendTo('body');
+			//绑定事件
+			$('.app-menu a[menu="menu1"]').on('click', function (){
+				window.location.href="###";
+            });
+			$('.app-menu a[menu="menu2"]').on('click', function (){
+				window.location.href="###";
+            });
+			$('.app-menu a[menu="menu3"]').on('click', function (){
+				 window.location.href="###";
+            });
+			$('.app-menu a[menu="menu5"]').on('click', function (){
+				window.location.href="###";
+            });
+			$('.app-menu a[menu="menu6"]').on('click', function (){
+				window.location.href="###";
+            });
+			$('.app-menu a[menu="menu7"]').on('click', function (){
+				 window.location.href="###";
+            });
+			$('.app-menu a[menu="menu8"]').on('click', function (){
+				window.location.href="###";
+            });
+			return popupMenuApp;
+		}
+	}})();
+	$(document).click(function(){
+		$(".popup_menu").hide();
+	})
+</script>
+</body>
+</html>

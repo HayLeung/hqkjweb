@@ -1,0 +1,226 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title></title>
+<link href="../assets/css/dpl-min.css" rel="stylesheet" type="text/css" />
+<link href="../assets/css/bui-min.css" rel="stylesheet" type="text/css" />
+<link href="../css/tab.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="../js/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="../js/tab.js"></script>
+<script src="../js/sea.js"></script><!--表格、弹出窗口所需-->
+<script src="../js/config.js"></script><!--表格、弹出窗口所需-->
+</head>
+<body>
+<div class="zzsc">
+  <div class="tab"> 
+    <a href="javascript:;" class="on">车辆缴费</a> 
+    <a href="javascript:;">车辆缴费审核</a> 
+    <a href="javascript:;">车辆缴费记录</a> 
+    <a href="javascript:;">车辆缴费统计</a> 
+  </div>
+  <div class="content2">
+    <ul>
+      <li style="display:block;">
+        <div class="actions-bar">
+          <div class="row">
+            <span>业户：</span>
+            <input class="input-normal control-text" type="text">
+            <span>车牌号：</span>
+            <input class="input-normal control-text" type="text">
+            <span>续费时长：</span>
+            <select  class="input-small">
+              <option>3个月</option><option>6个月</option><option>1年</option><option>2年</option>
+            </select>
+            <span>代理商：</span>
+            <select>
+              <option></option><option></option><option></option>
+            </select>
+            <button class="button button-info button-small">查询</button>
+            <button class="button button-small">重置</button>
+            <button class="button button-danger button-small">缴费</button><!--续费按平台车辆服务到期日期延长-->
+            <button class="button button-danger button-small">换卡缴费</button>
+          </div>
+        </div>
+        <div class="demo-content">
+          <div id="grid"> </div>
+        <!-- script start --> 
+        <script type="text/javascript">
+              BUI.use(['bui/grid','bui/data'],function(Grid,Data){
+                var Grid = Grid,
+              Store = Data.Store,
+              columns = [
+                {title : '所属分组',dataIndex :'a', width:100},
+                {title : '车牌号',dataIndex :'', width:100},
+				{title : '车牌颜色',dataIndex :'', width:100},
+				{title : '安装日期',dataIndex :'', width:100},
+				{title : '服务到期日期',dataIndex :'', width:100},
+				{title : '设备ID',dataIndex :'', width:100},
+				{title : 'SIM卡号',dataIndex :'', width:100},
+				{title : '车主/业户',dataIndex :'', width:100},
+				{title : '车架号',dataIndex :'', width:100},
+              ],
+              data = [{a:'中心',b:''},
+			          {a:'123',b:''},
+					  {a:'123',c:''}
+					  ];
+            var store = new Store({
+                data : data,
+                autoLoad:true
+              }),
+              grid = new Grid.Grid({
+                render:'#grid',
+                columns : columns,
+                store: store,
+				forceFit: true,	// 列宽按百分比自适应
+                plugins : [Grid.Plugins.CheckSelection,Grid.Plugins.ColumnResize,Grid.Plugins.AutoFit]  
+              });
+     
+            grid.render();
+			
+          });
+        </script> 
+        <!-- script end -->
+        </div>
+      </li>
+      <li>
+        <div class="actions-bar">
+          <div class="row">
+            <span>代理商：</span>
+            <select  class="input-normal">
+              <option></option><option></option><option></option><option></option>
+            </select>
+            <span>车牌号：</span>
+            <input class="input-normal control-text" type="text">
+            <span>业务类型：</span>
+            <select  class="input-normal">
+              <option></option><option></option><option></option><option></option>
+            </select>
+            <button class="button button-info button-small">查询</button>
+            <button class="button button-small">重置</button>
+          </div>
+        </div>
+        <div class="demo-content">
+          <div id="grid2"> </div>
+        <!-- script start --> 
+        <script type="text/javascript">
+              BUI.use(['bui/grid','bui/data'],function(Grid,Data){
+                var Grid = Grid,
+              Store = Data.Store,
+              columns = [
+                {title : '操作',dataIndex :'a', width:100},
+                {title : '所属分组',dataIndex :'', width:100},
+				{title : '车牌号',dataIndex :'', width:100},
+				{title : '车牌颜色',dataIndex :'', width:100},
+				{title : '安装日期',dataIndex :'', width:100},
+				{title : '服务到期日期',dataIndex :'', width:100},
+				{title : '业务类型',dataIndex :'', width:100},
+				{title : '代理商',dataIndex :'', width:100},
+				{title : '操作时间',dataIndex :'', width:100},
+				{title : '操作用户',dataIndex :'', width:100},
+              ],
+              data = [{a:'<span class="a">通过</span>|<span class="a">未通过</span>',b:''},
+			          {a:'<span class="a">通过</span>|<span class="a">未通过</span>',b:''},
+					  {a:'<span class="a">通过</span>|<span class="a">未通过</span>',b:''},
+					  ];
+            var store = new Store({
+                data : data,
+                autoLoad:true
+              }),
+              grid = new Grid.Grid({
+                render:'#grid2',
+                columns : columns,
+                store: store,
+				forceFit: true,	// 列宽按百分比自适应
+                plugins : [Grid.Plugins.CheckSelection,Grid.Plugins.ColumnResize,Grid.Plugins.AutoFit]  
+              });
+     
+            grid.render();
+			
+          });
+        </script> 
+        <!-- script end -->
+        </div>
+
+      </li>
+      <li>
+        <div class="actions-bar">
+          <div class="row">
+            <span>代理商：</span>
+            <select  class="input-normal">
+              <option></option><option></option><option></option><option></option>
+            </select>
+            <span>车牌号：</span>
+            <input class="input-normal control-text" type="text">
+            <span>业务类型：</span>
+            <select  class="input-normal">
+              <option></option><option></option><option></option><option></option>
+            </select>
+          </div>
+          <div class="row" style="margin-top:10px;">
+            <span>开户时间：</span>
+            <input class="input-normal control-text" type="text" placeholder="2016-12-01">-
+            <input class="input-normal control-text" type="text" placeholder="2016-12-01">
+            <span>操作时间：</span>
+            <input class="input-normal control-text" type="text" placeholder="2016-12-01">-
+            <input class="input-normal control-text" type="text" placeholder="2016-12-01">
+            <button class="button button-info button-small">查询</button>
+            <button class="button button-small">重置</button>
+          </div>
+        </div>
+        <div class="demo-content">
+          <div id="grid3"> </div>
+        <!-- script start --> 
+        <script type="text/javascript">
+              BUI.use(['bui/grid','bui/data'],function(Grid,Data){
+                var Grid = Grid,
+              Store = Data.Store,
+              columns = [
+                {title : '操作',dataIndex :'a', width:100},
+                {title : '所属分组',dataIndex :'', width:100},
+				{title : '车牌号',dataIndex :'', width:100},
+				{title : '车牌颜色',dataIndex :'', width:100},
+				{title : '安装日期',dataIndex :'', width:100},
+				{title : '服务到期日期',dataIndex :'', width:100},
+				{title : '业务类型',dataIndex :'', width:100},
+				{title : '代理商',dataIndex :'', width:100},
+				{title : '操作时间',dataIndex :'', width:100},
+				{title : '操作时间',dataIndex :'', width:100},
+				{title : '审核时间',dataIndex :'', width:100},
+				{title : '审核用户',dataIndex :'', width:100},
+              ],
+			  
+              data = [{a:'<span class="a">通过</span>|<span class="a">未通过</span>',b:''},
+			          {a:'<span class="a">通过</span>|<span class="a">未通过</span>',b:''},
+					  {a:'<span class="a">通过</span>|<span class="a">未通过</span>',b:''},
+					  ];
+            var store = new Store({
+                data : data,
+                autoLoad:true
+              }),
+              grid = new Grid.Grid({
+                render:'#grid3',
+                columns : columns,
+                store: store,
+				forceFit: true,	// 列宽按百分比自适应
+                plugins : [Grid.Plugins.CheckSelection,Grid.Plugins.ColumnResize,Grid.Plugins.AutoFit]  
+              });
+     
+            grid.render();
+			
+          });
+        </script> 
+        <!-- script end -->
+        </div>
+      </li>
+      <li>
+      空
+      </li>
+    </ul>
+  </div>
+</div>
+
+
+</div>
+</body>
+</html>

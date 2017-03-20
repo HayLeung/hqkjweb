@@ -1,0 +1,234 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title></title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=8">
+<link href="../assets/css/dpl-min.css" rel="stylesheet" type="text/css" />
+<link href="../assets/css/bui-min.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="../js/jquery-1.9.1.min.js"></script>
+<script src="../js/sea.js"></script><!--弹出窗口所需-->
+<script src="../js/config.js"></script><!--弹出窗口所需-->
+<script type="text/javascript">
+//tab  js
+$(function(){
+	$(".zzsc .tab a").click(function(){
+		$(this).addClass('on').siblings().removeClass('on');
+		var index = $(this).index();
+		number = index;
+		$('.zzsc .content2 li').hide();
+		$('.zzsc .content2 li:eq('+index+')').show();
+	});
+});
+</script>
+<style type="text/css">
+body{ box-sizing:border-box; padding-bottom:30px;}
+.content{ margin:20px;}
+.table{ margin-bottom:0;}
+.table .button{ width:80px;}
+.input-small{ text-align:right;}
+.span5{ padding-left:10px; line-height:35px;}
+.span5:hover{ background:#fafafa;}
+
+.a {color: #0000ff;padding: 0 5px;text-decoration: underline;cursor: pointer;}
+.margin_top{margin-top: 10px;}
+.zzsc{width:100%;background: fff;}
+.zzsc .tab a{display: inline-block;width:25%;padding:10px 0;text-align: center;float: left;background:#e8e9ef; color:#333;border-top:1px solid #c3c3d6;}
+.zzsc .tab a.on{background: #fff;color: #333;border-top: 1px solid #c3c3d6;}
+.zzsc .content2{width:100%;overflow: hidden;padding: 15px 0;}
+.zzsc .content2 li{display: none;}
+</style>
+</head>
+<body>
+<div class="actions-bar">报警参数设置</div>
+<div class="content">
+<div class="actions-bar">汇报参数</div>
+<table id="btnGroup" class="table table-bordered">
+  <tr>
+    <td><label class="checkbox"><input type="checkbox">报警屏蔽字</label></td>
+    <td><button id="btnFade" class="button">选项</button></td>
+    <td>勾选了的报警项会被屏蔽</td>
+  </tr>
+  <tr>
+    <td><label class="checkbox"><input type="checkbox">报警发送文本SMS开关</label></td>
+    <td><button id="btnFade" class="button">选项</button></td>
+    <td>对于勾选了的报警项，触发该报警时会发送SMS短信</td>
+  </tr>
+  <tr>
+    <td><label class="checkbox"><input type="checkbox">报警拍摄开关</label></td>
+    <td><button id="btnFade" class="button">选项</button></td>
+    <td>对于勾选了的报警项，触发该报警会拍照</td>
+  </tr>
+  <tr>
+    <td><label class="checkbox"><input type="checkbox">报警拍摄储标志</label></td>
+    <td><button id="btnFade" class="button">选项</button></td>
+    <td>对于勾选了的报警项，触发该报警时拍摄时的照片会储存，否则上传</td>
+  </tr>
+  <tr>
+    <td><label class="checkbox"><input type="checkbox">报警关键标志</label></td>
+    <td><button id="btnFade" class="button">选项</button></td>
+    <td>勾选了的报警项定义为关键报警</td>
+  </tr>
+  <tr>
+    <td><label class="checkbox"><input type="checkbox">最高速度</label></td>
+    <td><input type="text" class="input-small control-text" placeholder="80"></td>
+    <td>单位为公里每小时（km/h）</td>
+  </tr>
+  <tr>
+    <td><label class="checkbox"><input type="checkbox">超速维持时间</label></td>
+    <td><input type="text" class="input-small control-text" placeholder="5"></td>
+    <td>单位为秒（s）</td>
+  </tr>
+  <tr>
+    <td><label class="checkbox"><input type="checkbox">连续驾驶时间门限</label></td>
+    <td><input type="text" class="input-small control-text" placeholder="14400"></td>
+    <td>单位为秒（s）</td>
+  </tr>
+  <tr>
+    <td><label class="checkbox"><input type="checkbox">当天累计驾驶时间门限</label></td>
+    <td><input type="text" class="input-small control-text" placeholder="57600"></td>
+    <td>单位为秒（s）</td>
+  </tr>
+  <tr>
+    <td><label class="checkbox"><input type="checkbox">最小休息时间</label></td>
+    <td><input type="text" class="input-small control-text" placeholder="1200"></td>
+    <td>单位为秒（s）</td>
+  </tr>
+  <tr>
+    <td><label class="checkbox"><input type="checkbox">最长停车时间</label></td>
+    <td><input type="text" class="input-small control-text" placeholder="3600"></td>
+    <td>单位为秒（s）</td>
+  </tr>
+  <tr>
+    <td><label class="checkbox"><input type="checkbox">超速报警预警差值</label></td>
+    <td><input type="text" class="input-small control-text" placeholder="5"></td>
+    <td>单位为km/h</td>
+  </tr>
+  <tr>
+    <td><label class="checkbox"><input type="checkbox">疲劳驾驶预警差值</label></td>
+    <td><input type="text" class="input-small control-text" placeholder="1800"></td>
+    <td>单位为秒（s），>0</td>
+  </tr>
+  <tr>
+    <td><label class="checkbox"><input type="checkbox">碰撞报警参数-碰撞时间</label></td>
+    <td><input type="text" class="input-small control-text" placeholder="1"></td>
+    <td>碰撞时间，单位4ms</td>
+  </tr>
+  <tr>
+    <td><label class="checkbox"><input type="checkbox" style="visibility:hidden">碰撞报警参数-碰撞加速度</label></td>
+    <td><input type="text" class="input-small control-text" placeholder="10"></td>
+    <td>碰撞加速度，单位0.1g，设置范围在：0-79之间，默认为10</td>
+  </tr>
+  <tr>
+    <td><label class="checkbox"><input type="checkbox">侧翻报警参数设置</label></td>
+    <td><input type="text" class="input-small control-text" placeholder="30"></td>
+    <td>侧翻角度，单位1度，默认为30度</td>
+  </tr>
+</table>
+  <div class="pagination-right actions-bar">
+    <button class="button">重置参数</button>
+    <button class="button button-info">查询指定参数</button>
+    <button class="button button-info">查询所有参数</button>
+    <button class="button button-success">设置参数</button>
+  </div>
+</div>
+<!-- 此节点内部的内容会在弹出框内显示,默认隐藏此节点 以上5个按钮内容相同,在此只展示一套-->
+    <div id="content" style="display:none;">
+      <form id="form" class="form-horizontal">
+      <div class="zzsc">
+        <div class="tab"> 
+          <a href="javascript:;" class="on">预警</a> 
+          <a href="javascript:;">故障报警</a> 
+          <a href="javascript:;">车辆报警</a> 
+          <a href="javascript:;">驾驶引起报警</a>
+        </div>
+        <div class="content2">
+          <ul>
+            <!-- 预警  开始-->
+            <li style="display:block;">
+              <div class="row show-grid">
+                <div class="span5"><label class="checkbox"><input type="checkbox">危险预警</label></div>
+                <div class="span5"><label class="checkbox"><input type="checkbox">超速预警</label></div>
+                <div class="span5"><label class="checkbox"><input type="checkbox">疲劳驾驶预警</label></div>
+                <div class="span5"><label class="checkbox"><input type="checkbox">碰撞预警</label></div>
+                <div class="span5"><label class="checkbox"><input type="checkbox">侧翻预警</label></div>
+              </div>
+            </li>
+            <!-- 故障报警  开始-->
+            <li>
+              <div class="row show-grid">
+                <div class="span5"><label class="checkbox"><input type="checkbox">GNSS模块故障</label></div>
+                <div class="span5"><label class="checkbox"><input type="checkbox">GNSS天线未连接或被剪断</label></div>
+                <div class="span5"><label class="checkbox"><input type="checkbox">GNSS天线短路</label></div>
+                <div class="span5"><label class="checkbox"><input type="checkbox">终端主电源欠压</label></div>
+                <div class="span5"><label class="checkbox"><input type="checkbox">终端主电源掉电</label></div>
+                <div class="span5"><label class="checkbox"><input type="checkbox">终端LCD或显示故障</label></div>
+                <div class="span5"><label class="checkbox"><input type="checkbox">TTS故障</label></div>
+                <div class="span5"><label class="checkbox"><input type="checkbox">摄像头故障</label></div>
+                <div class="span5"><label class="checkbox"><input type="checkbox">运输证IC卡模块故障</label></div>
+              </div>
+            </li>
+            <!-- 车辆报警  开始-->
+            <li>
+              <div class="row show-grid">
+                <div class="span5"><label class="checkbox"><input type="checkbox">车辆VSS故障</label></div>
+                <div class="span5"><label class="checkbox"><input type="checkbox">车辆油量异常</label></div>
+                <div class="span5"><label class="checkbox"><input type="checkbox">车辆被盗</label></div>
+                <div class="span5"><label class="checkbox"><input type="checkbox">车辆非法点火</label></div>
+                <div class="span5"><label class="checkbox"><input type="checkbox">车辆非法移位</label></div>
+                <div class="span5"><label class="checkbox"><input type="checkbox">非法开报警</label></div>
+              </div>
+            </li>
+            <!--驾驶引起报警  开始-->
+            <li>
+              <div class="row show-grid">
+                <div class="span5"><label class="checkbox"><input type="checkbox">紧急报警</label></div>
+                <div class="span5"><label class="checkbox"><input type="checkbox">超速报警</label></div>
+                <div class="span5"><label class="checkbox"><input type="checkbox">疲劳驾驶</label></div>
+                <div class="span5"><label class="checkbox"><input type="checkbox">当天累计驾驶超时</label></div> 
+                <div class="span5"><label class="checkbox"><input type="checkbox">超时停车</label></div>
+                <div class="span5"><label class="checkbox"><input type="checkbox">进去区域</label></div>
+                <div class="span5"><label class="checkbox"><input type="checkbox">进出路线</label></div>
+                <div class="span5"><label class="checkbox"><input type="checkbox">路段行驶时间不足/过长</label></div>
+                <div class="span5"><label class="checkbox"><input type="checkbox">路线偏离报警</label></div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+      </form>
+    </div>    
+<!-- script start --> 
+    <script type="text/javascript">
+        BUI.use(['bui/overlay','bui/form'],function(Overlay,Form){
+      var form = new Form.Form({
+        srcNode : '#form'
+      }).render();
+      var dialog = new Overlay.Dialog({
+            title:'报警选项',
+            width:700,
+            height:260,
+
+            contentId:'content',
+          });
+        //dialog.show();
+        $('#btnGroup .button').on('click',function () {
+          var sender = $(this),
+            type = sender.text(),
+            effect = {
+              effect : type,
+              duration : 400// 
+              //callback : function(){} ,callback 回调函数
+            };
+ 
+          dialog.set('effect',effect);
+          dialog.show();
+ 
+        });
+      });
+    </script>
+<!-- script end -->
+
+
+</body>
+</html>

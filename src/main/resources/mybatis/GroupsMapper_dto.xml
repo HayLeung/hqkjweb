@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hqkj.example.dao.GroupsMapper" >
+
+  <resultMap id="groupsMap" type="com.hqkj.example.entity.Groups">
+    <id column="groupid" jdbcType="INTEGER" property="groupid" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="type" jdbcType="VARCHAR" property="type" />
+    <result column="trade" jdbcType="VARCHAR" property="trade" />
+    <result column="certificate" jdbcType="VARCHAR" property="certificate" />
+    <result column="contacts" jdbcType="VARCHAR" property="contacts" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="describe" jdbcType="VARCHAR" property="describe" />
+    <result column="pgroupid" jdbcType="INTEGER" property="pgroupid" />
+    <result column="pname" jdbcType="VARCHAR" property="pname" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+  </resultMap>
+
+  <sql id="validation">
+      <if test="1==1">
+
+      </if>
+  </sql>
+
+
+  <!--按条件查询分组信息-->
+  <select id="queryGroupsList" parameterType="java.util.Map" resultMap="groupsMap">
+    select * from Groups where 1=1
+    /*判断参数name是否为空*/
+    <if test="name != null and name != ''">
+       and name like concat('%',#{name},'%')
+    </if>
+    and status = 0
+  </select>
+
+
+  <!--根据用户名、ID判断是否存在该分组名称-->
+  <select id="queryNameExist" parameterType="java.util.Map" resultType="java.lang.Integer">
+    select count(groupid) from groups
+    where name = #{name}
+    /*判断参数groupsId是否为空*/
+    <if test="groupsId != null and groupsId != ''">
+       and groupsId <![CDATA[  <>  ]]]> #{groupsId}
+    </if>
+    and status = 0
+  </select>
+
+
+
+  <!--根据ID获取分组下是否有子分组-->
+  <select id="queryChirdenGroups" parameterType="java.lang.String" resultType="java.lang.Integer">
+    select groupsId from groups where pgroupid in(${groupsStr})
+  </select>
+
+
+    <!--根据ID删除分组信息-->
+   <update id="delGroups" parameterType="java.lang.String">
+     update Groups set status = 1  where  groupsId in(${groupsStr})
+   </update>
+
+
+</mapper>

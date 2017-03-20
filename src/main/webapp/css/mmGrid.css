@@ -1,0 +1,343 @@
+* {margin:0;padding:0;list-style:none;}
+
+body {font:normal 12px/22px "宋体"; color:#333;text-decoration:none;}
+img,input{border:0;}
+.red{color:#C33;}
+.mmGrid{
+    position: relative;
+    background: #fff;
+    text-align: left;
+	overflow-y:hidden;
+}
+
+.mmGrid table{
+    border-collapse: separate;
+    border-spacing: 0;
+    text-align: left;
+
+}
+
+.mmGrid input[type="radio"],
+.mmGrid input[type="checkbox"]{
+    margin:0; position:relative; top:3px;
+}
+
+/* 遮罩 */
+.mmGrid .mmg-mask{
+    position: absolute;
+    left: 0;
+    top: 0;
+    display: none;
+    width: 100%;
+    height: 100%;
+    background: #ddd;
+
+
+}
+
+/* 半透明 */
+.mmGrid .mmg-transparent{
+    /* IE 8 */
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
+    /* IE 5-7 */
+    filter: alpha(opacity=50);
+    /* Netscape */
+    -moz-opacity: 0.5;
+    /* Safari 1.x */
+    -khtml-opacity: 0.5;
+    /* Good browsers */
+    opacity: 0.5;
+}
+
+/* loading */
+.mmGrid .mmg-loading{
+    position: absolute;
+    display: none;
+    text-align: center;
+
+}
+
+.mmGrid .mmg-loading .mmg-loadingImg{
+    margin: 5px auto;
+    width: 32px;
+    height: 32px;
+    background: url(../images/loading.gif) no-repeat center center;
+}
+
+.mmGrid .mmg-loading .mmg-loadingText{
+
+}
+
+/* 标题包装 */
+.mmGrid .mmg-headWrapper{
+	position:fixed;
+    overflow: hidden;
+    width: 9999px;
+    z-index: 1;
+    height:20px;text-decoration:none; line-height:20px;
+	color: #fff;
+background: #34a4c1;
+border-top: 1px solid #ddd;border-bottom: 1px solid #ddd;
+}
+
+/* 标题 */
+.mmGrid .mmg-headWrapper .mmg-head{
+    position: relative;
+}
+
+.mmGrid .mmg-headWrapper .mmg-head th{
+    position: relative;
+    padding: 0 5px;
+    border-right: 1px solid #ddd;
+    border-bottom: 1px solid #d2d2d2;
+    overflow: hidden;
+}
+
+.mmGrid .mmg-headWrapper .mmg-head th.mmg-groupCol{
+    /* 分组列 */
+}
+
+.mmGrid .mmg-headWrapper .mmg-head th input{ margin-top:3px;
+}
+.mmGrid .mmg-headWrapper .mmg-head th .mmg-titleWrapper{
+    position: relative;
+    height: 2em;
+}
+.mmGrid .mmg-headWrapper .mmg-head th .mmg-titleWrapper .mmg-colResize{
+    position: absolute;
+    top: 0;
+    right: -6px;
+    _right: -4px;
+    width: 4px;
+    height: 100%;
+    cursor: col-resize;
+}
+
+.mmGrid .mmg-headWrapper .mmg-head th .mmg-titleWrapper .mmg-title{
+    display: inline-block;
+    *display: inline;
+    *zoom: 1;
+}
+
+.mmGrid .mmg-headWrapper .mmg-head th .mmg-titleWrapper .mmg-canSort{
+    cursor: pointer;
+}
+
+.mmGrid .mmg-headWrapper .mmg-head th .mmg-titleWrapper .mmg-sort{
+    overflow: hidden;
+    display: none;
+    width: 7px;
+    height: 2em;
+    margin-left: 2px;
+    vertical-align: top;
+}
+
+.mmGrid .mmg-headWrapper .mmg-head th .mmg-titleWrapper .mmg-asc{
+    display: inline-block;
+    *display: inline;
+    *zoom: 1;
+    background: url(../images/sort-asc.png) no-repeat center 6px;
+}
+
+.mmGrid .mmg-headWrapper .mmg-head th .mmg-titleWrapper .mmg-desc{
+    display: inline-block;
+    *display: inline;
+    *zoom: 1;
+    background: url(../images/sort-desc.png) no-repeat center 10px;
+}
+
+.mmGrid  .mmg-colResizePointer{
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: none;
+    width: 1px;
+    height: 100%;
+    background: #999;
+    cursor: col-resize;
+    z-index: 1;
+}
+
+.mmGrid  .mmg-colResizePointer-before{
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: none;
+    width: 1px;
+    height: 100%;
+    background: #999;
+    cursor: col-resize;
+    z-index: 1;
+}
+
+/* 背板 */
+.mmGrid .mmg-backboard{
+    position: relative;
+    display: none;
+    background-image: url(../images/furley_bg.png);
+    background-image: -webkit-image-set(
+        url(../images/furley_bg.png) 1x,
+    );
+    text-align: left;
+	top:22px;
+}
+.mmGrid .mmg-backboard h1{
+    margin: 0 10px 5px 10px;
+    padding: 10px 0 5px 0;
+    font-size: 1em;
+    font-weight: bold;
+    line-height: 1.8;
+    border-bottom: 1px solid #ccc;
+}
+
+.mmGrid .mmg-backboard label{
+    display: inline-block;
+    *display: inline;
+    *zoom: 1;
+    width: 95px;
+    font-size: 1em;
+    line-height: 2.2;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.mmGrid .mmg-backboard label input{
+    margin: 0 5px 0 10px;
+    padding: 0px;
+    border: 0px;
+}
+
+/* 内容包装器 */
+.mmGrid .mmg-bodyWrapper{
+    position: relative;
+	top:22px;
+    overflow: auto;
+    width: 9999px;
+    min-height: 0%; /* fix IE9 hover bug see: http://jsfiddle.net/pjkix/86Lfv/ */
+}
+
+/* 内容 */
+.mmGrid .mmg-bodyWrapper .mmg-body{
+    table-layout: fixed;
+}
+
+.mmGrid .mmg-bodyWrapper .mmg-body tr{
+
+}
+
+.mmGrid .mmg-bodyWrapper .mmg-body tr.even{
+    background: #f9f9f9;
+}
+
+.mmGrid .mmg-bodyWrapper .mmg-body td{
+    padding: 0 5px;
+    border-right: 1px solid #e4e4e4;
+    border-bottom: 1px solid #e4e4e4;
+    line-height: 2;
+	text-align:;
+}
+
+.mmGrid .mmg-bodyWrapper .mmg-body td.colSelected{
+    background: #f7f7f7;
+}
+
+.mmGrid .mmg-bodyWrapper .mmg-body td.colSelectedEven{
+    background: #f5f5f5;
+}
+
+.mmGrid .mmg-bodyWrapper .mmg-body tr.hover td{
+    background: #e1eff8;
+}
+
+.mmGrid .mmg-bodyWrapper .mmg-body tr:hover td{
+    background: #e1eff8;
+}
+
+.mmGrid .mmg-bodyWrapper .mmg-body tr.selected td{
+    background: #fff5cc;
+}
+
+.mmGrid .mmg-bodyWrapper .mmg-body td .mmg-index{
+    color: #555;
+}
+
+.mmGrid .nowrap{
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    -o-text-overflow: ellipsis;
+    -ms-text-overflow: ellipsis;
+}
+
+/* 消息 */
+.mmGrid .mmg-message{
+    position: absolute;
+    display: none;
+    text-align: center;
+}
+
+.mmGrid .mmg-btnBackboardDn{
+    position: absolute;
+    top: 0;
+    right: 20px;
+    display: block;
+    width: 50px;
+    height: 20px;
+    background: #fff url(../images/arrow_down.png) no-repeat center center;
+    border: 1px solid #ccc;
+    border-top: 0;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+    -webkit-box-shadow: 1px 1px 3px #ccc;
+    -moz-box-shadow: 1px 1px 3px #ccc;
+    -o-box-shadow: 1px 1px 3px #ccc;
+    -ms-box-shadow: 1px 1px 3px #ccc;
+    box-shadow:1px 1px 3px #ccc;
+    cursor: pointer;
+}
+
+.mmGrid .mmg-backboard .mmg-btnBackboardUp{
+    position: absolute;
+    right: 20px;
+    top:15px;
+    display: block;
+    width: 50px;
+    height: 20px;
+    background: #fff url(../images/arrow_up.png) no-repeat center center;
+    border: 1px solid #ccc;
+    border-bottom: 0;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+    -webkit-box-shadow: 1px 1px 3px #ccc;
+    -moz-box-shadow: 1px 1px 3px #ccc;
+    -o-box-shadow: 1px 1px 3px #ccc;
+    -ms-box-shadow: 1px 1px 3px #ccc;
+    box-shadow:1px 1px 3px #ccc;cursor: pointer;
+}
+/*右键  开始*/
+.popup_menu{position:absolute; z-index:9000; border:1px solid #AEAEAE; padding:2px; width:120px; background:#fff;}
+.popup_menu a{ display:block; color:#325B8E; text-indent:12px; text-decoration:none; height:26px; line-height:25px; padding-right:5px;}
+.popup_menu a:hover{ background:#57B4E4; color:#fff;}
+/*分页  开始*/
+.page{ height:37px; width:100%; box-sizing:border-box; line-height:37px; background:#f0f0f0; position:absolute; bottom:24px; border-top:1px solid #ddd; padding:0 20px;}
+.page select{ border:1px solid #ddd; width:60px;cursor: pointer;}
+.page .show{ float:right;}
+.page .show span{ padding:5px 10px 4px; background:#fff; border:1px solid #ddd;border-radius:5px;cursor: pointer}
+.page .show span:hover{ background:#34a4c1; color:#fff;}
+.page .show .current{background:#34a4c1; color:#fff;}
+/*ie input去掉删除*/
+::-ms-clear { display: none; } 
+::-ms-reveal { display: none; }
+/*表格查找条件*/
+/*.row h2{ float:left; width:100%; height:20px; line-height:20px; background:#f5f5f5; font-size:12px; box-sizing:border-box; padding-left:10px; border-top:1px solid #ddd;}
+.row ul{width:100%;float:left;box-sizing:border-box;border-top:1px solid #ddd; line-height:40px; padding-left:10px;}
+.row ul li{ float:left; margin-right:10px;}
+.row ul li select{ padding:2px 0 2px 2px; border:1px solid #ddd;width:130px;}
+.row ul li .car{ width:100px;}
+.row ul li .time,.row ul li .car{padding:3px 5px; box-sizing:border-box;border:1px solid #ddd; overflow:hidden;}
+.row ul li.right{ position:absolute;right:0;}
+*/
+

@@ -1,0 +1,117 @@
+* {margin:0;padding:0;list-style:none;}
+body {font:normal 13px/22px "宋体"; background:#E8E9EE; color:#333;}
+img,input{border:0;}
+a{text-decoration:none;color:#333;}
+/*公共样式*/
+.title{ float:left; width:94%; height:40px; color:#636775; line-height:40px; padding-left:6%; font-weight:bold;background:#E8E9EE url(../assets/img/menu-500-188.png) no-repeat 3px 19px;}
+.red{ color:#ff0000;}
+.blue{color:#0068b7;}
+.green{color:#79db69;}
+.gray{color:#a5a5a5;}
+.width50{ width:50%; float:left;}
+.center{ text-align:center;}
+/*图标*/
+.fa-automobile{ position:relative;left:-4px;}
+.fa-cab,.fa-truck,.fa-bus,.fa-car{ position:relative;left:-4px;}
+/*右侧操作面板  开始*/
+/*查找  开始*/
+.operation{background:#E8E9EE; width:100%; min-width:260px; padding-bottom:200px; overflow:hidden; }
+.operation .title_fixed{ position:fixed; z-index:100;}
+.operation .look{float:left;width:100%; height:30px; background:#E8E9EE;position:fixed; z-index:100; top:7px;min-width:260px;}
+.operation .look .inp{ float:left;margin:3px 0 0 3px; background:#E8E9EE;border:1px solid #C3C3D6}
+.operation .look .inp input{ width:100px; float:left;height:23px; background:#E8E9EE}
+.operation .look .inp button{border:none;background:#88a8cc;height:23px; color:#fff;cursor:pointer; padding:0 3px; }
+.operation .look .super{ float:right;border:none;height:23px; margin:3px 3px 0 0; color:#1c3a5a; line-height:23px; background:#E8E9EE;cursor:pointer; padding-right:10px; border:1px solid #C3C3D6}
+.operation .look .inp .fa{ float:left; margin:4px;}
+.operation .look .super .fa{ margin:0 4px;}
+/*高级查找  开始*/
+.operation .sup_look{ display:none; width:100%; float:left; background:#E8E9EE; padding-bottom:5px; position:relative;top:40px;}
+.operation .sup_look .look_info{ width:98%; float:left; margin-top:6px; padding-left:2%;}
+.operation .sup_look .look_info input{ float:right; height:23px;padding: 0 5px; margin-right:20px;}
+.operation .sup_look button,.sup_look .close{border:none;background:#88a8cc;color:#fff; float:right; margin:0 3px;cursor:pointer; }
+.operation .sup_look button{ height:24px;width:44px;}
+.operation .sup_look .close{ width:44px;text-align:center; padding:1px 0; }
+/*树形列表  开始*/
+.operation #menu_zzjs_net{width:100%;overflow-y:auto; position:relative; top:40px; max-height:600px\9;min-height:580px\9;}
+.operation #menu_zzjs_net li{line-height:18px;}
+.operation #menu_zzjs_net .rem{padding-left:16px;}
+.operation #menu_zzjs_net li a{color:#333;padding-left:5px; text-decoration:none; position:relative; top:2px;}
+.operation #menu_zzjs_net li a img{ position:relative; top:3px;left:-3px;}
+.operation #menu_zzjs_net li input{ vertical-align:middle;margin-left:2px; }
+.operation #menu_zzjs_net li .nb{ color:#8c8c8c; float:right; position:relative; top:2px; margin-right:20px;}
+.operation #menu_zzjs_net .two{padding-left:15px;display:none;}
+.operation #menu_zzjs_net li .add{float:left; background:url(../images/r_arrow.png) no-repeat center 5px;}
+.operation #menu_zzjs_net li .ren{float:left; background:url(../images/b_arrow.png) no-repeat center 5px;}
+/*树形列表  选项卡  开始*/
+.zzsc{ width:100%; height:200px; position:fixed; bottom:0; background:#fff;}
+.zzsc .tab{ overflow:hidden;}
+.zzsc .tab a{display:inline-block; width:33.3333333%; height:29px; line-height:29px; text-align:center;float:left;background:#2b9ecd; color:#fff;border-top:1px solid #2b9ecd;}
+.zzsc .tab a.on{ background:#fff; color:#fff;color:#333; border-top:1px solid #2b9ecd;}
+.zzsc .content{ overflow:hidden; padding:10px;}
+.zzsc .content li{ display:none; }
+/*右键  开始*/
+.popup_menu{position:absolute; z-index:90; border:1px solid #AEAEAE; padding:2px; width:150px; background:#fff;}
+.popup_menu a{ display:block; color:#325B8E; text-indent:12px; text-decoration:none; height:26px; line-height:25px; padding-right:5px;}
+.popup_menu a:hover{ background:#57B4E4; color:#fff;}
+/*历史查询  选项卡  开始*/
+.actions-bar2{padding:7px 20px;background-color: #e8e9ef;border-bottom: 1px solid #c3c3d6;}
+.lishishuju{width:100%; height:100%;}
+.lishishuju .tab{width:100%; box-sizing:border-box; padding-left:1px;background:#2b9ecd; overflow:hidden;}
+.lishishuju .tab a{display:inline-block;height:20px; line-height:20px; float:left;background:#2b9ecd; color:#fff; padding:0 20px;}
+.lishishuju .tab a.on{ background:#fafafa;color:#333;border-top:1px solid #2b9ecd;}
+.lishishuju .content{ overflow-y:auto; padding:0 10px; height:90%;}
+.lishishuju .content .row{ box-sizing:border-box; padding-left:10px; margin-top:3px; float:left;width:100%;}
+.lishishuju .h2{ width:270px; text-align:center;background:#09F; padding:2px 0; color:#fff; float:left; position:relative;}
+.lishishuju .h2 span{ letter-spacing:3px; position:absolute; right:10px;}
+.lishishuju ul li{ float:left; width:100%;}
+.lishishuju span.right{ width:140px; float:right;}
+.lishishuju .row .checkbox{ margin-right:20px;}
+.lishishuju .row .button{ margin-right:20px; padding:2px 20px}
+/*滑动杆  开始*/
+.slider-container{ margin-left:70px; margin-top:8px;}
+.slider-container .back-bar {height: 10px;position: relative;}
+.slider-container .back-bar .selected-bar {position: absolute;height: 100%;}
+.slider-container .back-bar .pointer {position: absolute;width: 10px;height: 10px;cursor: col-resize;opacity: 1;z-index: 2;}
+.slider-container .back-bar .pointer.last-active {z-index: 3;}
+.slider-container .back-bar .pointer-label {display:none;}
+.slider-container .scale {top: 2px;position: relative;}
+.slider-container .scale span {position: absolute;height: 5px;border-left: 1px solid #999;font-size: 0;}
+.theme-green .back-bar {height: 5px;border-radius: 2px;background-color: #b8b8b8;}
+.theme-green .back-bar .selected-bar {border-radius: 2px;background-color: #555;}
+.theme-green .back-bar .pointer {width: 14px;height: 14px;top: -5px;box-sizing: border-box;border-radius: 10px;border: 1px solid #AAA;background-color: #f5f5f5;}
+.theme-green .scale span {border-left: 1px solid #fff;}
+/*图片查看  开始*/
+.lishishuju .content .img{ float:left; width:270px; box-sizing:border-box; padding:8px; margin-top:10px;}
+.lishishuju .content .img_border{ border:1px solid #ff0000;}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

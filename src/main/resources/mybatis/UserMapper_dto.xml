@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hqkj.example.dao.UserMapper" >
+  <resultMap id="userMap" type="com.hqkj.example.entity.User" >
+    <id column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="user_name" property="userName" jdbcType="VARCHAR" />
+    <result column="password" property="password" jdbcType="VARCHAR" />
+    <result column="person_name" property="personName" jdbcType="VARCHAR" />
+    <result column="role_id" property="roleId" jdbcType="INTEGER" />
+    <result column="user_type" property="userType" jdbcType="TINYINT" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="describe" property="describe" jdbcType="VARCHAR" />
+    <result column="groupid" property="groupid" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="TINYINT" />
+  </resultMap>
+
+  <sql id="validation">
+      <if test="userType != null and userType != ''">
+        and user_type = #{userType}
+      </if>
+      <if test="userName != null and userName != ''">
+        and user_name like concat('%',#{userName},'%')
+      </if>
+      and status = 0
+  </sql>
+
+
+  <!--根据用户名获取单个对象，用于做登录-->
+  <select id="queryUserByName" resultMap="userMap" parameterType="com.hqkj.example.entity.User">
+    select * from USER where user_name = #{userName}
+    /*判断是否存在当前用户名*/
+    <if test="userId != null and userId != ''">
+        and user_id <![CDATA[  <>  ]]]> #{userId}
+    </if>
+    and status = 0
+  </select>
+
+
+  <!--获取整个用户列表，利用分页插件进行分页-->
+  <select id="queryUserList" parameterType="java.util.Map" resultMap="userMap">
+    SELECT * from  User where 1=1
+    /*引用参数*/
+    <include refid="validation"/>
+  </select>
+
+
+  <!--根据用户ID，获取单个用户信息-->
+  <select id="queryUserInfo" parameterType="java.lang.Integer" resultMap="userMap">
+      SELECT  * from User WHERE  user_id = #{userId}
+  </select>
+
+  <!--修改用户密码-->
+  <update id="modifyPass" parameterType="com.hqkj.example.entity.User">
+      update User set password = #{password} where user_id = #{userId}
+  </update>
+
+  <!--批量删除用户-->
+  <update id="delUser" parameterType="java.lang.String">
+      update User set status = 1 where user_id in (#{userId})
+  </update>
+
+
+
+</mapper>

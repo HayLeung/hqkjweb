@@ -1,0 +1,235 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title></title>
+<link href="../assets/css/dpl-min.css" rel="stylesheet" type="text/css" />
+<link href="../assets/css/bui-min.css" rel="stylesheet" type="text/css" />
+<link href="../css/tab.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="../js/jquery-1.9.1.min.js"></script>
+<script src="../js/sea.js"></script><!--表格、弹出窗口所需-->
+<script src="../js/config.js"></script><!--表格、弹出窗口所需-->
+<script src="../js/alert_pop.js"></script><!--弹出窗口-->  
+</head>
+<body>
+<!--表格头部按钮及筛选条件  开始-->
+<div class="actions-bar">
+  <div class="row">
+    <button class="button button-success button-small eq_new" id="addGroups">添加</button>
+    <button class="button button-danger button-small">删除</button>
+    <button class="button button-warning button-small">导出组织架构图</button>
+    <button class="button button-warning button-small">导出</button>
+    <button class="button button-success button-small">导入/模板下载</button>
+    <input type="text" class="control-text" placeholder="请输入关键字">
+    <button class="button button-info button-small">查询</button>
+    <button class="button button-small">重置</button>
+  </div>
+</div>
+<!--表格头部按钮及筛选条件  结束-->
+<div class="demo-content">
+  <!-- 表格  开始 --> 
+  <div id="grid"> </div>
+  <script type="text/javascript">
+
+          BUI.use(['bui/grid','bui/data','bui/form',
+              '../operate/config.js',
+              '../operate/yunyingguanli/groups.js'],function(Grid,Data,Form,config,groups){
+            var Grid = Grid,
+            Store = Data.Store,
+            columns = [
+              {title : '操作',dataIndex :'groupid', width:100,
+                  renderer : function (groupid) {
+                  return '<input type="hidden" value="'+groupid+'">' +
+                      '<span class="a eq_edit">编辑</span>|' +
+                      '<span class="a">删除</span>'
+                    },
+              },
+              {title : '名称',dataIndex :'name', width:100},
+              {title : '上级名称',dataIndex :'pname', width:100},
+              {title : '经营许可证号',dataIndex :'certificate', width:100},
+              {title : '所属行业',dataIndex :'trade', width:100},
+              {title : '联系人',dataIndex :'contacts', width:100},
+              {title : '联系电话',dataIndex :'phone', width:100},
+              {title : '地址',dataIndex :'address', width:100},
+              {title : '描述',dataIndex :'describe', width:100},
+            ];
+              var store = new Store({
+                  url : '../groups/queryGroupsList',
+                  proxy : {//设置请求相关的参数
+                      method : 'post',
+                      dataType : 'json', //返回数据的类型
+                      limitParam : 'pageSize', //一页多少条记录
+                      pageIndexParam : 'pageNum', //页码
+                      startParam : 'startPage' //起始记录
+                  },
+                  autoLoad:true,
+                  pageSize:10,  // 配置分页数目
+                  root : 'list',               //存放数据的字段名(rows)
+                  totalProperty : 'pageSum'     //存放记录总数的字段名(results)
+              }),
+              grid = new Grid.Grid({
+                  render:'#grid',
+                  columns : columns,
+                  plugins : [Grid.Plugins.CheckSelection,Grid.Plugins.ColumnResize,Grid.Plugins.AutoFit],
+                  loadMask: true,
+                  store: store,
+                  // 底部工具栏
+                  bbar:{
+                      // pagingBar:表明包含分页栏
+                      pagingBar:true
+                  }
+              });
+          grid.render();
+          });
+
+        </script> 
+  <!-- 表格 结束 --> 
+  <!-- 此节点内部的内容会在弹出框内显示,默认隐藏此节点 第一个弹出框 id与下面js中取的对应-->
+  <div id="eq_edit_content" style="display:none;">
+    <div class="row-fluid">
+        <form class="form-horizontal" id="editForm">
+        <div class="span11">
+          <div class="control-group">
+            <label class="control-label"><s>*</s>名称：</label>
+            <div class="controls"><input class="input-normal control-text" type="text" name="name"></div>
+          </div>
+ 
+          <div class="control-group">
+            <label class="control-label"><s>*</s>上级名称：</label>
+            <div class="controls">
+                <select class="input-normal" name="pgroupid">
+                    <option>中心</option>
+                </select>
+            </div>
+          </div>
+          
+          <div class="control-group">
+            <label class="control-label">联系人：</label>
+            <div class="controls">
+                <input class="input-normal control-text" name="contacts" type="text">
+            </div>
+          </div>
+          
+          <div class="control-group">
+            <label class="control-label">经营许可证号：</label>
+            <div class="controls">
+                <input class="input-normal control-text" name="certificate" type="text">
+            </div>
+          </div>
+ 
+          <div class="control-group">
+            <label class="control-label">地址：</label>
+            <div class="controls  control-row4">
+                <textarea name="address"></textarea>
+            </div>
+          </div>
+        </div>
+        <div class="span11">
+          <div class="control-group">
+            <label class="control-label">类型：</label>
+            <div class="controls">
+            <select class="input-normal" name="type">
+              <option>地区</option><option>市/县</option><option>企业</option><option>子企业</option>
+            </select>
+            </div>
+          </div>
+ 
+          <div class="control-group">
+            <label class="control-label">所属行业：</label>
+            <div class="controls">
+              <select class="input-normal" name="trade">
+                <option>客运</option>
+                <option>货运</option>
+                <option>出租车</option>
+                <option>校车</option>
+                <option>公交车</option>
+              </select>
+            </div>
+          </div>
+          
+          <div class="control-group">
+            <label class="control-label">联系电话：</label>
+            <div class="controls">
+                <input class="input-normal control-text" name="phone" type="text">
+            </div>
+          </div>
+ 
+          <div class="control-group">
+            <label class="control-label">描述：</label>
+            <div class="controls  control-row4">
+                <textarea name="describe"></textarea>
+            </div>
+          </div>
+        </div>
+        </form>
+      </div>
+  </div>
+  <!-- 此节点内部的内容会在弹出框内显示,默认隐藏此节点 第二个弹出框 id与下面js中取的对应-->
+  <div id="eq_new_content" style="display:none;">
+    <div class="row-fluid">
+        <form class="form-horizontal" id="addForm">
+        <div class="span11">
+          <div class="control-group">
+            <label class="control-label"><s>*</s>名称：</label>
+            <div class="controls"><input class="input-normal control-text" type="text" ></div>
+          </div>
+ 
+          <div class="control-group">
+            <label class="control-label"><s>*</s>上级名称：</label>
+            <div class="controls"><select class="input-normal"><option>中心</option></select></div>
+          </div>
+          
+          <div class="control-group">
+            <label class="control-label">联系人：</label>
+            <div class="controls"><input class="input-normal control-text" type="text"></div>
+          </div>
+          
+          <div class="control-group">
+            <label class="control-label">经营许可证号：</label>
+            <div class="controls"><input class="input-normal control-text" type="text"></div>
+          </div>
+ 
+          <div class="control-group">
+            <label class="control-label">地址：</label>
+            <div class="controls  control-row4"><textarea></textarea></div>
+          </div>
+        </div>
+        <div class="span11">
+          <div class="control-group">
+            <label class="control-label">类型：</label>
+            <div class="controls">
+            <select class="input-normal">
+              <option>地区</option><option>市/县</option><option>企业</option><option>子企业</option>
+            </select>
+            </div>
+          </div>
+ 
+          <div class="control-group">
+            <label class="control-label">所属行业：</label>
+            <div class="controls">
+              <select class="input-normal">
+                <option>客运</option>
+                <option>货运</option>
+                <option>出租车</option>
+                <option>校车</option>
+                <option>公交车</option>
+              </select>
+            </div>
+          </div>
+          
+          <div class="control-group">
+            <label class="control-label">联系电话：</label>
+            <div class="controls"><input class="input-normal control-text" type="text"></div>
+          </div>
+ 
+          <div class="control-group">
+            <label class="control-label">描述：</label>
+            <div class="controls  control-row4"><textarea></textarea></div>
+          </div>
+        </div>
+        </form>
+      </div>
+  </div>
+</div>
+</body>
+</html>

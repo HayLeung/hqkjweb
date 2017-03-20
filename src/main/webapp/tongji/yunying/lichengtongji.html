@@ -1,0 +1,186 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title></title>
+<link href="../../assets/css/dpl-min.css" rel="stylesheet" type="text/css" />
+<link href="../../assets/css/bui-min.css" rel="stylesheet" type="text/css" />
+<link href="../../css/tab.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="../../js/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="../../js/tab.js"></script>
+<script src="../../js/sea.js"></script><!--表格、弹出窗口所需-->
+<script src="../../js/config.js"></script><!--表格、弹出窗口所需-->
+
+</head>
+<body>
+<div class="zzsc">
+  <div class="tab"> 
+    <a href="javascript:;" class="on">车辆里程统计</a> 
+    <a href="javascript:;">车辆日里程统计</a> 
+  </div>
+  <div class="content2">
+    <ul>
+      <li style="display:block;">
+        <div class="actions-bar">
+          <div class="row">
+            <button class="button button-warning button-small">导出</button>
+            <button class="button button-success button-small">打印</button>
+            <span>开始时间：</span>
+            <input class="input-normal control-text" type="text" placeholder="2016-12-12 23:59:59">
+            <span>结束时间：</span>
+            <input class="input-normal control-text" type="text" placeholder="2016-12-12 23:59:59">
+            <button class="button button-info button-small">查询</button>
+            <button class="button button-small">重置</button>
+          </div>
+        </div>
+        <div class="demo-content">
+          <div id="grid"> </div>
+        <!-- script start --> 
+        <script type="text/javascript">
+              BUI.use(['bui/grid','bui/data'],function(Grid,Data){
+                var Grid = Grid,
+              Store = Data.Store,
+              columns = [
+                {title : '车队',dataIndex :'a', width:120},
+                {title : '车牌号',dataIndex :'b', width:100},
+				{title : '车牌颜色',dataIndex :'c', width:100},
+				{title : '开始时间',dataIndex :'d', width:100},
+                {title : '开始里程（km）',dataIndex :'e', width:100},
+                {title : '结束时间',dataIndex :'f', width:100},
+                {title : '结束里程（km）',dataIndex :'g', width:100},
+                {title : '车辆里程统计',dataIndex :'h', width:100},
+              ],
+              data = [{a:'123'},
+			          {a:'123',b:'edd'},
+					  {a:'123',c:'eee',d:2}
+					  
+					  ];
+            var store = new Store({
+                data : data,
+                autoLoad:true
+              }),
+              grid = new Grid.Grid({
+                render:'#grid',
+                columns : columns,
+                store: store,
+				forceFit: true,	// 列宽按百分比自适应
+                plugins : [Grid.Plugins.ColumnResize,Grid.Plugins.AutoFit]  
+              });
+     
+            grid.render();
+			
+          });
+        </script> 
+<!-- script end -->
+</div>
+      </li>
+      <li>
+        <div class="actions-bar">
+          <div class="row">
+            <button class="button button-warning button-small">导出</button>
+            <button class="button button-success button-small">打印</button>
+            <span>时间：</span>
+            <input class="input-normal control-text" type="text" placeholder="2016-12">
+            <span>精准率：</span>
+            <input class=" input-small control-text" type="text">
+            <button class="button button-info button-small">查询</button>
+            <button class="button button-small">重置</button>
+          </div>
+        </div>
+        <div class="demo-content">
+          <div id="grid2"> </div>
+        <!-- script start --> 
+        <script type="text/javascript">
+              BUI.use(['bui/grid','bui/data'],function(Grid,Data){
+                var Grid = Grid,
+              Store = Data.Store,
+              columns = [
+			    {title : '车牌号',dataIndex :'a', width:100},
+				{title : '车牌颜色',dataIndex :'b', width:100},
+				{title : '车辆类型',dataIndex :'c', width:100},
+                {title : '道路运输企业',dataIndex :'d', width:120},
+                {title : '1',dataIndex :'', width:30},
+				{title : '2',dataIndex :'', width:30},
+				{title : '3',dataIndex :'', width:30},
+				{title : '4',dataIndex :'', width:30},
+				{title : '5',dataIndex :'', width:30},
+				{title : '6',dataIndex :'', width:30},
+				{title : '7',dataIndex :'', width:30},
+				{title : '8',dataIndex :'', width:30},
+				{title : '9',dataIndex :'', width:30},
+				{title : '10',dataIndex :'', width:30},
+				{title : '11',dataIndex :'', width:30},
+				{title : '12',dataIndex :'', width:30},
+				{title : '13',dataIndex :'', width:30},
+				{title : '14',dataIndex :'', width:30},
+				{title : '15',dataIndex :'', width:30},
+				{title : '16',dataIndex :'', width:30},
+				{title : '17',dataIndex :'', width:30},
+				{title : '18',dataIndex :'', width:30},
+				{title : '19',dataIndex :'', width:30},
+				{title : '20',dataIndex :'', width:30},
+				{title : '21',dataIndex :'', width:30},
+				{title : '22',dataIndex :'', width:30},
+				{title : '23',dataIndex :'', width:30},
+				{title : '24',dataIndex :'', width:30},
+				{title : '25',dataIndex :'', width:30},
+				{title : '26',dataIndex :'', width:30},
+				{title : '27',dataIndex :'', width:30},
+				{title : '28',dataIndex :'', width:30},
+				{title : '29',dataIndex :'', width:30},
+				{title : '30',dataIndex :'', width:30},
+				{title : '合计',dataIndex :'', width:100},
+              ],
+              data = [{a:'中心',b:''},
+			          {a:'123',b:''},
+					  {a:'123',c:''}
+					  ];
+            var store = new Store({
+                data : data,
+                autoLoad:true
+              }),
+              grid = new Grid.Grid({
+                render:'#grid2',
+                columns : columns,
+                store: store,
+				forceFit: true,	// 列宽按百分比自适应
+                plugins : [Grid.Plugins.ColumnResize,Grid.Plugins.AutoFit]  
+              });
+     
+            grid.render();
+			
+          });
+        </script> 
+<!-- script end -->
+</div>
+      </li>
+    </ul>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

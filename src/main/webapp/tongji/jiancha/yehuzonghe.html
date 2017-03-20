@@ -1,0 +1,74 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title></title>
+<link href="../../assets/css/dpl-min.css" rel="stylesheet" type="text/css" />
+<link href="../../assets/css/bui-min.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="../../js/jquery-1.9.1.min.js"></script>
+<script src="../../js/sea.js"></script><!--表格、弹出窗口所需-->
+<script src="../../js/config.js"></script><!--表格、弹出窗口所需-->
+<style>
+.bui-drag-line {position: absolute;border-left: 1px solid #ccc;}
+.a {color: #0000ff;padding: 0 5px;text-decoration: underline;cursor: pointer;}
+</style>
+</head>
+<body>
+<div class="actions-bar">
+  <div class="row">
+    <button class="button button-warning button-small">导出</button>
+    <button class="button button-success button-small">打印</button>
+    <span>开始时间：</span>
+    <input class="input-normal control-text" type="text" placeholder="2016-12-12 23:59:59">
+    <span>结束时间：</span>
+    <input class="input-normal control-text" type="text" placeholder="2016-12-12 23:59:59">
+    <button class="button button-info button-small">查询</button>
+    <button class="button button-small">重置</button>
+  </div>
+</div>
+<div class="demo-content">
+  <div id="grid"> </div>
+<!-- script start --> 
+<script type="text/javascript">
+              BUI.use(['bui/grid','bui/data'],function(Grid,Data){
+                var Grid = Grid,
+              Store = Data.Store,
+              columns = [
+                {title : '开始时间',dataIndex :'a', width:100},
+                {title : '结束时间',dataIndex :'b', width:100},
+				{title : '业户名称',dataIndex :'c', width:200},
+				{title : '车辆数',dataIndex :'d', width:100},
+				{title : '上线率（车日数）',dataIndex :'e', width:50},
+				{title : '保修车日数',dataIndex :'f', width:50},
+				{title : '报停车日数',dataIndex :'g', width:50},
+				{title : '卫星漂移率',dataIndex :'h', width:50},
+				{title : '报警次数',dataIndex :'i', width:50},
+				{title : '异常轨迹率',dataIndex :'j', width:50},
+				{title : '查岗应答率',dataIndex :'k', width:50},
+				{title : '轨迹完整率',dataIndex :'l', width:50},
+              ],
+              data = [{a:'123'},
+			          {a:'123',b:'edd'},
+					  {a:'123',c:'eee',d:2}
+					  
+					  ];
+            var store = new Store({
+                data : data,
+                autoLoad:true
+              }),
+              grid = new Grid.Grid({
+                render:'#grid',
+                columns : columns,
+                store: store,
+				forceFit: true,	// 列宽按百分比自适应
+                plugins : [Grid.Plugins.ColumnResize,Grid.Plugins.AutoFit]  
+              });
+     
+            grid.render();
+			
+          });
+        </script> 
+<!-- script end -->
+</div>
+</body>
+</html>

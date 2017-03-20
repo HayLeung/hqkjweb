@@ -1,0 +1,68 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title></title>
+<link href="../assets/css/dpl-min.css" rel="stylesheet" type="text/css" />
+<link href="../assets/css/bui-min.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="../js/jquery-1.9.1.min.js"></script>
+<script src="../js/sea.js"></script><!--表格、弹出窗口所需-->
+<script src="../js/config.js"></script><!--表格、弹出窗口所需-->
+<style>
+.a{ color:#0000ff; padding:0 5px; text-decoration:underline;cursor:pointer;}
+textarea{ height:100px;}
+.texts{ float:right;}
+.texts .text{ float:left; margin-right:20px;}
+</style>
+</head>
+<body>
+<div class="actions-bar">
+  <div class="row">
+    <span>加/减速：</span>
+    <input type="text" class="control-text" placeholder="请输入关键字">
+    <button class="button button-warning button-small">修改速度</button>
+    <button class="button button-success button-small">下发围栏</button>
+    <div class="texts">
+      <div class="text"><span class="label label-warning">需要下发个数：</span><span class="badge badge-warning">8</span></div>
+      <div class="text"><span class="label label-success">已下发：</span><span class="badge badge-success">2</span></div>
+      <div class="text"><span class="label label-important">失败：</span><span class="badge badge-error">6</span></div>
+    </div>
+  </div>
+</div>
+<div class="demo-content">
+  <div id="grid"> </div>
+  <!-- script start --> 
+  <script type="text/javascript">
+              BUI.use(['bui/grid','bui/data'],function(Grid,Data){
+                var Grid = Grid,
+              Store = Data.Store,
+              columns = [
+                {title : '区域名称',dataIndex :'a', width:200},
+                {title : '区域类型',dataIndex :'b', width:200},
+				{title : '限速值',dataIndex :'c', width:200},
+              ],
+              data = [{a:'aaa'},
+			          {a:'aaa',b:'edd'},
+					  {a:'aaa',c:'eee',d:2}
+					  
+					  ];
+            var store = new Store({
+                data : data,
+                autoLoad:true,				
+              }),
+              grid = new Grid.Grid({
+                render:'#grid',
+                columns : columns,
+                store: store,
+				//forceFit: true,	// 列宽按百分比自适应
+                plugins : [Grid.Plugins.CheckSelection,Grid.Plugins.ColumnResize,Grid.Plugins.AutoFit]  
+              });
+     
+            grid.render();
+			
+          });
+        </script> 
+  <!-- script end --> 
+</div>
+</body>
+</html>

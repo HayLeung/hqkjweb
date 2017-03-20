@@ -1,0 +1,64 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+<title></title>
+<link href="logo.ico" rel="SHORTCUT ICON" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=8">
+<link href="../assets/css/dpl-min.css" rel="stylesheet" type="text/css" />
+<link href="../assets/css/bui-min.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+.content{ width:1000px; float:left; box-sizing:border-box;border:1px solid #ddd; margin:20px; overflow:hidden;}
+.content .actions-bar{width:100%; float:left;}
+.row input[type="text"],select{ float:right; margin-right:15px;}
+.row{ box-sizing:border-box; padding:0 20px; margin:0;}
+.row div{padding:8px 0;}
+.row div:hover{ background:#f0f0f0;}
+.pagination-right{ margin-top:15px;}
+.width{ width:450px; float:left;}
+</style>
+</head>
+<body>
+<div class="actions-bar">基本参数设置</div>
+<div class="content">
+  <div class="actions-bar">基本参数设置</div>
+  <div class="width">
+    <div class="row">
+      <div class="row"><label class="checkbox"><input type="checkbox">位置汇报策略</label><input type="text" class="control-text"></div>
+      <div class="row"><label class="checkbox"><input type="checkbox">位置汇报方案</label><input type="text" class="control-text"></div>
+      <div class="row"><label class="checkbox"><input type="checkbox">驾驶员未登录汇报时间间隔（秒）</label><input type="text" class="control-text"></div>
+      <div class="row"><label class="checkbox"><input type="checkbox">休眠时汇报时间间隔（秒）</label><input type="text" class="control-text"></div>
+      <div class="row"><label class="checkbox"><input type="checkbox">紧急报警时汇报时间间隔（秒）</label><input type="text" class="control-text"></div>
+      <div class="row"><label class="checkbox"><input type="checkbox">缺省时间汇报间隔（秒）</label><input type="text" class="control-text"></div>
+      <div class="row"><label class="checkbox"><input type="checkbox">缺省距离汇报间隔（秒）</label><input type="text" class="control-text"></div>
+      <div class="row"><label class="checkbox"><input type="checkbox">驾驶员未登录汇报距离间隔（米）</label><input type="text" class="control-text"></div>
+      <div class="row"><label class="checkbox"><input type="checkbox">休眠时汇报距离间隔（米）</label><input type="text" class="control-text"></div>
+      <div class="row"><label class="checkbox"><input type="checkbox">紧急报警时汇报距离间隔（米）</label><input type="text" class="control-text"></div>
+      <div class="row"><label class="checkbox"><input type="checkbox">拐点补传角度</label><input type="text" class="control-text"></div>
+      <div class="row"><label class="checkbox"><input type="checkbox">电子围栏半径（米）</label><input type="text" class="control-text"></div>
+    </div>
+  </div>
+  <div class="width">
+    <div class="row">
+      <div class="row"><label class="checkbox"><input type="checkbox">终端心跳发送间隔（秒）</label><input type="text" class="control-text"></div>
+      <div class="row"><label class="checkbox"><input type="checkbox">TCP消息应答超时时间（秒）</label><input type="text" class="control-text"></div>
+      <div class="row"><label class="checkbox"><input type="checkbox">TCP消息重传次数</label><input type="text" class="control-text"></div>
+      <div class="row"><label class="checkbox"><input type="checkbox">UDP消息应答超时时间（秒）</label><input type="text" class="control-text"></div>
+      <div class="row"><label class="checkbox"><input type="checkbox">UDP消息重传次数</label><input type="text" class="control-text"></div>
+      <div class="row"><label class="checkbox"><input type="checkbox">SMS消息应答超时时间（秒）</label><input type="text" class="control-text"></div>
+      <div class="row"><label class="checkbox"><input type="checkbox">SMS消息重传次数</label><input type="text" class="control-text"></div>
+      <div class="row"><label class="checkbox"><input type="checkbox">车辆里程表读数（1/10km）</label><input type="text" class="control-text"></div>
+      <div class="row"><label class="checkbox"><input type="checkbox">车辆所在的省域ID</label><input type="text" class="control-text"></div>
+      <div class="row"><label class="checkbox"><input type="checkbox">车辆所在的市域ID</label><input type="text" class="control-text"></div>
+      <div class="row"><label class="checkbox"><input type="checkbox">车牌号</label><input type="text" class="control-text"></div>
+      <div class="row"><label class="checkbox"><input type="checkbox">车辆颜色</label><input type="text" class="control-text"></div>
+    </div>
+  </div> 
+  <div class="pagination-right actions-bar">
+    <button class="button">重置所有参数</button>
+    <button class="button button-info">查询所有参数</button>
+    <button class="button button-success">设置参数</button>
+  </div>
+</div>
+</body>
+</html>

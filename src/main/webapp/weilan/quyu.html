@@ -1,0 +1,175 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title></title>
+<link href="../assets/css/dpl-min.css" rel="stylesheet" type="text/css" />
+<link href="../assets/css/bui-min.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="../js/jquery-1.9.1.min.js"></script>
+<script src="../js/sea.js"></script><!--表格、弹出窗口所需-->
+<script src="../js/config.js"></script><!--表格、弹出窗口所需-->
+<style>
+.a{ color:#0000ff; padding:0 5px; text-decoration:underline;cursor:pointer;}
+textarea{ height:100px;}
+.actions-bar{ padding-top:35px;}
+.tips{ width:100%; position:absolute; top:0; left:0; text-indent:10px; padding:0;line-height:25px;}
+#attri_content .control-group{ margin:8px 0; float:left;}
+</style>
+</head>
+<body>
+<div class="actions-bar">
+  <span class="tips tips-notice">
+    1.“标注类型”决定该区域在地图中填充颜色；2.“地图中显示”，勾选则在地图显示，否则不显示；双击行记录可以实现在地图中定位。
+  </span>
+  <div class="row">
+    <span>区域名称：</span>
+    <input type="text" class="control-text" placeholder="请输入关键字">
+    <button class="button button-info button-small">查询</button>
+    <button class="button button-small">重置</button>
+  </div>
+
+</div>
+<div class="demo-content">
+  <div id="grid"> </div>
+  <!-- 此节点内部的内容会在弹出框内显示,默认隐藏此节点 编辑弹出框 id与下面js中取的对应-->
+  <div id="edit_content" style="display:none;">
+    <div class="row-fluid">
+        <form class="form-horizontal">
+          <div class="control-group">
+            <label class="control-label">区域名称：</label>
+            <div class="controls"><input class="input-normal control-text" type="text"></div>
+          </div>
+          <div class="control-group">
+            <label class="control-label">区域类型：</label>
+            <div class="controls">
+            <select class="input-normal">
+              <option>休息区</option><option></option><option></option><option></option>
+            </select>
+            </div>
+          </div> 
+          <div class="control-group">
+            <label class="control-label">备注：</label>
+            <div class="controls  control-row4"><textarea></textarea></div>
+          </div>
+        </form>
+      </div>
+  </div>
+   <!-- 此节点内部的内容会在弹出框内显示,默认隐藏此节点 区域属性弹出框 id与下面js中取的对应-->
+  <div id="attri_content" style="display:none;">
+    <div class="row-fluid">
+        <form class="form-horizontal">
+          <div class="control-group">
+            <span class="span4 controls"><label class="checkbox"><input type="checkbox">根据时间</label></span>
+            <span class="span9 controls">开始时间：<input class="input-normal control-text" type="text" placeholder="2017-03-02 23:59:59"></span>
+            <span class="span9 controls">结束时间：<input class="input-normal control-text" type="text" placeholder="2017-03-02 23:59:59"></span>
+          </div>
+          <div class="control-group">
+            <span class="span4 controls"><label class="checkbox"><input type="checkbox">限速</label></span>
+            <span class="span9 controls">最高速度（km/h）：<input class="input-small control-text" type="text"  style="width:86px;"></span>
+            <span class="span9 controls">超速维持时间（秒）：<input class="input-small control-text" type="text"  style="width:80px;"></span>
+          </div>
+          <div class="control-group">
+            <span class="span6 controls"><label class="checkbox"><input type="checkbox">进区域报警给驾驶员</label></span>
+            <span class="span7 controls"><label class="checkbox"><input type="checkbox">进区域报警给平台</label></span>
+            <span class="span9 controls"><label class="checkbox"><input type="checkbox">出区域报警给驾驶员</label></span>
+          </div>
+          <div class="control-group">
+            <span class="span6 controls"><label class="checkbox"><input type="checkbox">出区域报警给平台</label></span>
+            <span class="span7 controls"><label class="checkbox"><input type="checkbox">南纬</label></span>
+            <span class="span9 controls"><label class="checkbox"><input type="checkbox">西经</label></span>
+          </div>
+          <div class="control-group">
+            <span class="span6 controls"><label class="checkbox"><input type="checkbox">禁止开门</label></span>
+            <span class="span7 controls"><label class="checkbox"><input type="checkbox">进区域关闭通信模块</label></span>
+            <span class="span9 controls"><label class="checkbox"><input type="checkbox">进区域采集GNSS 详细定位数据</label></span>
+          </div>
+        </form>
+      </div>
+  </div>
+  <!-- script start --> 
+  <script type="text/javascript">
+              BUI.use(['bui/grid','bui/data'],function(Grid,Data){
+                var Grid = Grid,
+              Store = Data.Store,
+              columns = [
+                {title : '操作',dataIndex :'a', width:100},
+                {title : '区域名称',dataIndex :'b', width:100},
+				{title : '描述',dataIndex :'c', width:100},
+				{title : '区域形状',dataIndex :'d', width:100},
+				{title : '创建人',dataIndex :'e', width:100},
+				{title : '区域属性',dataIndex :'f', width:100},
+              ],
+              data = [{a:'<span class="a edit">编辑</span>|<span class="a">删除</span>',f:'<span class="a attri">区域属性</span>'},
+			          {a:'<span class="a edit">编辑</span>|<span class="a">删除</span>',b:'edd',f:'<span class="a attri">区域属性</span>'},
+					  {a:'<span class="a edit">编辑</span>|<span class="a">删除</span>',c:'eee',f:'<span class="a attri">区域属性</span>'}
+					  
+					  ];
+            var store = new Store({
+                data : data,
+                autoLoad:true,				
+              }),
+              grid = new Grid.Grid({
+                render:'#grid',
+                columns : columns,
+                store: store,
+				//forceFit: true,	// 列宽按百分比自适应
+                plugins : [Grid.Plugins.CheckSelection,Grid.Plugins.ColumnResize,Grid.Plugins.AutoFit]  
+              });
+     
+            grid.render();
+			
+			<!--弹出窗口js  开始-->
+			BUI.use(['bui/overlay','bui/form'],function(Overlay,Form){
+			    var form = new Form.Form({
+				   srcNode : '#form'
+			    }).render();
+			    var edit_dialog = new Overlay.Dialog({
+					title:'编辑',
+					width:380,
+					height:260,
+
+					contentId:'edit_content',
+				});
+			    var attri_dialog = new Overlay.Dialog({
+					title:'区域属性',
+					width:720,
+					height:280,
+
+					contentId:'attri_content',
+				});
+				//dialog.show();
+				$('.edit').on('click',function () {
+				  var sender = $(this),
+					type = sender.text(),
+					effect = {
+					  effect : type,
+					  duration : 400// 
+					  //callback : function(){} ,callback 回调函数
+					};
+		 
+				  edit_dialog.set('effect',effect);
+				  edit_dialog.show();
+		 
+				});
+				$('.attri').on('click',function () {
+				  var sender = $(this),
+					type = sender.text(),
+					effect = {
+					  effect : type,
+					  duration : 400// 
+					  //callback : function(){} ,callback 回调函数
+					};
+		 
+				  attri_dialog.set('effect',effect);
+				  attri_dialog.show();
+		 
+				});
+			});
+			<!--弹出窗口内容结束-->
+			
+          });
+        </script> 
+  <!-- script end --> 
+</div>
+</body>
+</html>

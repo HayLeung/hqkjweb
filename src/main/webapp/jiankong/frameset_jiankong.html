@@ -1,0 +1,53 @@
+<!DOCTYPE HTML>
+<html style="background:#fff">
+<meta charset="utf-8">
+<style>
+* {
+	padding: 0;
+	margin: 0;
+}
+</style>
+<script>
+var t;
+var stopFlag=false;
+function timer1()
+{
+ var target=document.getElementById("target_top");
+ target.setAttribute("cols",target.cols);
+ t=setTimeout("timer1()",500);
+}
+window.onload=function(){
+document.getElementById("target_top").onmousedown=function(
+){
+	clearTimeout(t);
+	stopFlag=true;
+};
+document.getElementById("target_top").onmouseup=function(
+){
+	if(stopFlag)
+	setTimeout("timer1()",1);
+	else{
+	clearTimeout(t);
+	setTimeout("timer1()",1);
+	}
+		stopFlag=false;
+		  var topWin = document.getElementById("video").contentWindow;
+		  if(topWin.innerWidth<10)
+			 {
+				document.getElementById("target_top").setAttribute("cols","10px,*");
+			 }
+};
+ setTimeout("timer1()",100);
+
+}
+</script>
+<frameset id="target" rows="*,44px"   frameborder="0"  border="0"  bordercolor="#fff">
+  <frameset id="target_top" cols="10px,*"   frameborder="0"  border="0"   bordercolor="#fff" >
+    <frame id="video" src="video.html" border="0"   frameborder="0" scrolling="auto" style="border-right: #d2e0f0 1px solid;"/>
+    <frame id="map" src="map.html" border="0"   frameborder="0" scrolling="auto" style="border-left: #d2e0f0 1px solid;"/>
+  </frameset>
+  <frame noresize="noresize" src="map_bottom.html" border="0"   frameborder="0" scrolling="auto" style="border-left: #d2e0f0 1px solid;"/>
+</frameset>
+<noframes></noframes>
+
+</html>

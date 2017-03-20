@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<link rel="stylesheet" type="text/css" href="../css/bottom_list.css"/>
+<link rel="stylesheet" href="../font/css/font-awesome.css"/><!--图片-->
+<script type="text/javascript" src="../js/jquery.min.js"></script>
+<script type="text/javascript" src="../js/tytabs.jquery.js"></script>
+<!--选项卡  开始-->
+<script type="text/javascript">
+$(document).ready(function(){
+	$("#tabsholder").tytabs({
+							tabinit:"1",
+							fadespeed:"fast"
+							});
+	$("#tabsholder2").tytabs({
+							prefixtabs:"tabz",
+							prefixcontent:"contentz",
+							classcontent:"tabscontent",
+							tabinit:"3",
+							catchget:"tab2",
+							fadespeed:"normal"
+							});
+});
+
+</script>
+<!--选项卡  结束-->
+<style type="text/css">
+html,body{ width:100%; height:100%;}
+#tabsholder{ box-sizing:border-box; padding-bottom:42px;}
+#tabsholder,#tabsholder .marginbot,#tabsholder iframe,.tabscontent{height:100%;}
+</style>
+</head>
+<body>
+<!--选项卡   开始-->
+<div id="tabsholder">
+  <div class="contents marginbot">
+    <!-- 速度曲线  详细内容  开始-->
+    <div id="content1" class="tabscontent">
+      <iframe src="map_bottom_border.html" scrolling="no"></iframe>
+    </div>
+    <!-- 速度曲线  详细内容  结束-->
+    <!-- GPS数据  详细内容  开始-->
+    <div id="content2" class="tabscontent">
+      <iframe src="map_bottom_table2.html" scrolling="no"></iframe>
+    </div>
+    <!-- GPS数据  详细内容  结束-->
+    <!-- GPS数据丢失信息  详细内容  开始-->
+    <div id="content3" class="tabscontent">
+      <iframe src="map_bottom_table3.html" scrolling="no"></iframe>
+    </div>
+    <!-- GPS数据丢失信息  详细内容  结束-->
+    <!-- 无效GPS数据  详细内容  开始-->
+    <div id="content4" class="tabscontent">
+      <iframe src="map_bottom_table4.html" scrolling="no"></iframe>
+    </div>
+    <!-- 无效GPS数据  详细内容  结束-->
+    <!-- 报警数据  详细内容  开始-->
+    <div id="content5" class="tabscontent">
+      <iframe src="map_bottom_table5.html" scrolling="no"></iframe>
+    </div>
+    <!-- 报警数据  详细内容  结束-->
+    <!-- 图片数据  详细内容  开始-->
+    <div id="content6" class="tabscontent">
+      <iframe src="map_bottom_table6.html" scrolling="no"></iframe>
+    </div>
+    <!-- 图片数据  详细内容  结束-->
+  </div>
+  <ul class="tabs">
+    <li id="tab1">速度曲线</li>
+    <li id="tab2">GPS数据</li>
+    <li id="tab3">GPS数据丢失信息</li>
+    <li id="tab4">无效GPS数据</li>
+    <li id="tab5">报警数据</li>
+    <li id="tab6">图片数据</li>
+  </ul>
+</div>
+<!--选项卡  结束-->
+</body>
+</html>

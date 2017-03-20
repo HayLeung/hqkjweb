@@ -1,0 +1,81 @@
+    <!DOCTYPE html>
+    <html>
+    <head>
+    <meta charset="utf-8">
+    <title>修改节点图标</title>
+    <!-- 此文件为了显示Demo样式，项目中不需要引入 -->
+<link href="../assets/css/dpl-min.css" rel="stylesheet" type="text/css" />
+<link href="../assets/css/bui-min.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="../js/jquery-1.9.1.min.js"></script>
+<script src="../js/sea.js"></script><!--表格、弹出窗口所需-->
+<script src="../js/config.js"></script><!--表格、弹出窗口所需-->  
+    </head>
+    <body>
+
+
+
+  <div id="role_edit_content">
+    <div class="row-fluid">
+        <form class="form-horizontal">
+        <div class="span11">
+          <div class="control-group">
+            <label class="control-label"><s>*</s>角色名称：</label>
+            <div class="controls"><input class="input-normal control-text" type="text"></div>
+          </div>
+ 
+          <div class="control-group">
+            <label class="control-label">父角色：</label>
+            <div class="controls"><select class="input-normal"><option>系统管理员</option></select></div>
+          </div>
+          
+          <div class="control-group">
+            <label class="control-label">描述：</label>
+            <div class="controls  control-row4"><textarea></textarea></div>
+          </div>
+        </div>
+        <div class="span11">
+          <div class="actions-bar">操作权限</div>
+          <div id="t1"></div>
+        </div>
+        </form>
+      </div>
+  </div>
+              
+
+
+        
+  
+    <!-- script start --> 
+        <script type="text/javascript">
+            BUI.use('bui/tree',function (Tree) {
+            
+          //树节点数据，
+          //text : 文本，
+          //id : 节点的id,
+          //leaf ：标示是否叶子节点，可以不提供，根据childern,是否为空判断
+          //expanded ： 是否默认展开
+          //checked : 节点是否默认选中
+          var data = [ 
+              {text : '1',id : '1',checked : true,children: [{text : '11',id : '11'}]},
+              {text : '2',id : '2',expanded : true,children : [
+                  {text : '21',id : '21',children : [{text : '211',id : '211'},{text : '212',id : '212'}]},
+                  {text : '22',id : '22'}
+              ]},
+              {text : '3',id : '3'},
+              {text : '4',id : '4'}
+            ];
+          //由于这个树，不显示根节点，所以可以不指定根节点
+          var tree = new Tree.TreeList({
+            render : '#t1',
+            nodes : data,
+            checkType: 'all', //checkType:勾选模式，提供了4中，all,onlyLeaf,none,custom
+            showLine : true //显示连接线
+          });
+          tree.render();
+     
+        });
+        </script>
+    <!-- script end -->
+
+    </body>
+    </html>

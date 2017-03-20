@@ -1,0 +1,204 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>历史照片查询</title>
+<link href="logo.ico" rel="SHORTCUT ICON" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="../css/style.css"/>
+<link href="../assets/css/dpl-min.css" rel="stylesheet" type="text/css" />
+<link href="../assets/css/main-min.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="../js/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="../js/num-alignment.js"></script><!--加减所需-->
+<script type="text/javascript" src="../js/jquery.range.js"></script><!--滑杆所需-->
+<script type="text/javascript">
+//tab  js
+$(function(){
+	$(".lishishuju .tab a").click(function(){
+		$(this).addClass('on').siblings().removeClass('on');
+		var index = $(this).index();
+		number = index;
+		$('.lishishuju .content li').hide();
+		$('.lishishuju .content li:eq('+index+')').show();
+	});
+});
+</script>
+<script type="text/javascript">
+//创建输入滑杆
+$(function(){
+	$('.single-slider').jRange({
+		from: 1,
+		to: 5,
+		step: 1,
+		scale: [1,2,3,4,5],
+		format: '%s',
+		width:200,
+		showLabels: true,
+		showScale: true
+	});
+});
+</script>
+<style type="text/css">
+html,body{ height:100%; width:100%; box-sizing:border-box;background:#fafafa}
+</style>
+</head>
+<body>
+<div class="actions-bar2">查询条件</div>
+<!--查询条件  开始-->
+<div class="lishishuju">
+  <div class="tab">
+    <a href="javascript:;" class="on">查询</a>
+    <a href="javascript:;">图片</a> 
+  </div>
+  <div class="content">
+    <ul>
+      <!--查询 开始-->
+      <li style="display:block; height:100%;">
+        <!--日历  开始-->
+        <div class="h2" style=" margin-top:5px;">2017-02日历样式展示</div>
+        <table class="table table-bordered" style="width:270px">
+          <tr>
+            <td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td>
+          </tr>
+          <tr>
+            <td>8</td><td>9</td><td>10</td><td>11</td><td>12</td><td>13</td><td>14</td>
+          </tr>
+          <tr>
+            <td>15</td><td>16</td><td>17</td><td>18</td><td>19</td><td>20</td><td>21</td>
+          </tr>
+          <tr>
+            <td>22</td><td>23</td><td>24</td><td>25</td><td>26</td><td>27</td><td>28</td>
+          </tr>
+        </table>
+        <!--日历  结束-->
+        <!--查询条件  开始-->
+        <div class="row">
+          <label class="left">组织架构：</label>
+          <div class="controls">
+            <select>
+              <option>请选择</option>
+              <option>请选择</option>
+              <option>请选择</option>
+              <option>请选择</option>
+            </select>
+          </div>
+        </div>
+        <div class="row">
+          <label class="left">车牌号码：</label>
+          <div class="controls">
+            <select>
+              <option>请选择</option>
+              <option>请选择</option>
+              <option>请选择</option>
+              <option>请选择</option>
+            </select>
+          </div>
+        </div>
+        <div class="row">
+        <label class="left">开始时间：</label>
+        <div class="controls">
+          <input type="text" class="control-text" placeholder="2016-12-31 23:59:59">
+        </div>
+      </div>
+      <div class="row">
+        <label class="left">结束时间：</label>
+        <div class="controls">
+          <input type="text" class="control-text" placeholder="2016-12-31 23:59:59">
+        </div>
+      </div>
+      <div class="row">
+        <label class="left">速度范围：</label>
+        <input id="start" style="width:77px; float:left;" class="alignment" data_edit="true" value="10"/>
+        <!--id名可任意更改，不与结束重复-->
+        <span style="float:left; padding:0 10px;">至</span>
+        <input id="end" style="width:77px; float:left;" class="alignment" data_edit="true" value="10"/>
+        <!--id名可任意更改，不与开始重复-->
+      </div>
+      <div class="row">
+        <label class="left" style="margin-right:0;">判定GPS数据丢失时间间隔(秒)：</label>
+        <input id="time" style="width:79px;" class="alignment" data_edit="true" value="300"/>
+      </div>
+      <div class="row">
+        <label class="checkbox"><input type="checkbox">显示报警信息</label>
+        <label class="checkbox"><input type="checkbox">显示拍照图片</label>
+      </div>
+      <div class="row">
+        <label class="left">回放速度：</label> 
+        <input type="hidden" class="single-slider" />
+      </div>
+      <div class="row">
+        <button class="button button-info">查询</button>
+        <button class="button button-success">开始</button>
+        <button class="button button-danger">停止</button>
+      </div>
+      <!--查询条件  结束-->
+      <!--统计信息  开始-->
+      <div class="row">
+        <div class="h2">统计信息</div>
+        <div>合计里程：189.80 km</div>
+        <div>速度门限：70km/h</div>
+        <div>速度为 50-70 km/h  <span class="right">次数：228</span></div>
+        <div>速度为 70-80 km/h <span class="right">次数：2</span></div>
+        <div>速度为 80-90 km/h  <span class="right">次数：0</span></div>
+        <div>速度为 90-100 km/h <span class="right">次数：0</span></div>
+        <div>速度为 100-110 km/h <span class="right">次数：0</span></div>
+        <div>速度为 110 km/h以上  <span class="right">次数：0</span></div>
+      </div>
+      <!--统计信息  结束-->
+      <!--上传数据到上级平台  开始-->
+      <div class="row">
+        <div class="h2">上传数据到上级平台</div>
+        <div class="row">
+          <label class="left" style="margin-right:0;">事件时间：</label>
+          <div class="controls">
+            <input type="text" class="control-text" placeholder="2016-12-31 23:59:59">
+          </div>
+        </div>
+        <div class="row">
+          <label class="checkbox"><input type="checkbox">无定位数据</label>
+          <label class="checkbox"><input type="checkbox">轨迹异常</label>
+        </div>
+        <div class="row">
+          <label class="checkbox"><input type="checkbox">脱线运行</label>
+          <label class="checkbox"><input type="checkbox">超速</label>
+          <label><input type="text" class="control-text" style="width:50px;">km/h</label>
+        </div>
+        <div><button class="button button-small button-primary">上传违规信息</button></div>
+      </div>
+      <!--上传数据到上级平台  结束-->
+      </li>
+      <!--查询 结束-->
+      <!--图片 开始-->
+      <li style="display:none; height:100%;">
+        <div class="h2" style="margin-top:5px;">图片查看<span>共10张</span></div>
+        <div class="img img_border">
+          <img src="../images/123.jpg" style="width:100%; height:auto"/>
+        </div>
+        <div class="img">
+          <img src="../images/321.jpg" style="width:100%; height:auto"/>
+        </div>
+        <div class="img">
+          <img src="../images/123.jpg" style="width:100%; height:auto"/>
+        </div>
+        <div class="img">
+          <img src="../images/321.jpg" style="width:100%; height:auto"/>
+        </div>
+        <div class="img">
+          <img src="../images/123.jpg" style="width:100%; height:auto"/>
+        </div>
+        <div class="img">
+          <img src="../images/321.jpg" style="width:100%; height:auto"/>
+        </div>
+        <div class="img">
+          <img src="../images/123.jpg" style="width:100%; height:auto"/>
+        </div>
+        <div class="img">
+          <img src="../images/321.jpg" style="width:100%; height:auto"/>
+        </div>
+      </li>
+      <!--图片 结束-->
+    </ul>
+  </div>
+</div>
+<!--查询条件  结束-->
+</body>
+</html>

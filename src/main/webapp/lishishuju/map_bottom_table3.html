@@ -1,0 +1,92 @@
+﻿<!DOCTYPE html>
+<html class="no-js">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>实时位置</title>
+<meta name="description" content="">
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1">
+<link rel="stylesheet" href="../css/mmGrid.css">
+<style>
+html,body{ width:100%; height:100%; }
+.mmGrid{height:100%; background:#fff;}
+</style>
+</head>
+<body>
+<table id="table3-1" >
+  <tbody>
+    <tr>
+      <td>600009123600009123600009123600009123600009123</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
+<script src="../js/jquery-1.9.1.min.js"></script> 
+<script src="../js/plugins.js"></script> 
+<script src="../js/mmGrid.js"></script> 
+<script type="text/javascript">
+    $(document).ready(function(){
+    //保留两位小数
+    var fixed2 = function(val){
+        return val.toFixed(2);
+    }
+
+    //加百分号
+    var fixed2percentage = function(val){
+        return fixed2(val)+'%';
+    }
+    //高亮
+    var highliht = function(val){
+        if(val > 0){
+            return '<span style="color: #b00">' + fixed2(val) + '</span>';
+        }else if(val < 0){
+            return '<span style="color: #0b0">' + fixed2(val) + '</span>';
+        }
+        return fixed2(val);
+    };
+
+var items = [];
+var cols3 = [
+        {title:'序号', name:'title0' ,width:30, align:'left', sortable: true},
+        {title:'车牌号', name:'title1' ,width:50, align:'left', sortable: true},
+        {title:'开始时间', name:'title2' ,width:50, align:'left', sortable: true},
+        {title:'开始经度', name:'title4' ,width:50, align:'left', sortable: true},
+        {title:'开始纬度', name:'title5' ,width:50, align:'left', sortable: true},
+		{title:'结束时间', name:'title6' ,width:50, align:'left', sortable: true},
+        {title:'结束经度', name:'title7' ,width:50, align:'left', sortable: true},
+		{title:'结束纬度', name:'title8' ,width:50, align:'left', sortable: true},
+		{title:'丢失数据开始位置', name:'title8' ,width:50, align:'left', sortable: true},
+    ];
+$("#table3-1 tr").each(function(i){
+	 tdsize=$(this).find("td").size();
+	 obj=new Object();
+	 for(k=0;k<cols3.length;k++){
+		 obj[(cols3[k]).name]=$(this).find("td:eq("+k+")").text()
+	 }
+	 items[i]=obj;
+});
+
+    //客户端排序示例
+    $('#table3-1').mmGrid({
+		width:"auto",
+        cols: cols3,
+		checkCol: true,
+		multiSelect: true,
+        items: items,
+        sortStatus: 'desc',
+		fullWidthRows: true,
+		nowrap: true
+    });
+});
+    
+    
+    </script> 
+<!-- 
+<script src="js/main.js"></script> js代码内容已转入body-->
+
+</body>
+</html>

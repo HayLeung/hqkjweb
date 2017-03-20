@@ -1,0 +1,74 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+<title></title>
+<link href="logo.ico" rel="SHORTCUT ICON" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=8">
+<link href="../assets/css/dpl-min.css" rel="stylesheet" type="text/css" />
+<link href="../assets/css/bui-min.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+.content{ width:450px; float:left; box-sizing:border-box;border:1px solid #ddd; margin:20px; overflow:hidden;}
+.content .actions-bar{width:100%;}
+.content .box{ width:80%; margin-left:10%;}
+.row input[type="text"],select{ float:right; margin-right:15px;}
+.row{padding:10px 20px;}
+.row:hover{ background:#f0f0f0;}
+.pagination-right{ margin-top:15px;}
+.checkboxs .checkbox{ margin-left:10px;}
+</style>
+</head>
+<body>
+<div class="actions-bar">拍照设置</div>
+<div class="content">
+  <div class="actions-bar">拍照设置</div>
+  <div class="row checkboxs">
+    <label class="checkbox">拍摄通道：</label>
+    <label class="checkbox"><input type="checkbox">1</label>
+    <label class="checkbox"><input type="checkbox">2</label>
+    <label class="checkbox"><input type="checkbox">3</label>
+    <label class="checkbox"><input type="checkbox">4</label>
+    <label class="checkbox"><input type="checkbox">5</label>
+    <label class="checkbox"><input type="checkbox">6</label>
+    <label class="checkbox"><input type="checkbox">7</label>
+    <label class="checkbox"><input type="checkbox">8</label>
+  </div>
+  <div class="box">
+    <div class="row">
+      <label>拍照开关标志</label>
+      <select><option>不允许</option><option>允许</option></select>
+    </div>
+    <div class="row">
+      <label>储存标志</label>
+      <select><option>上传</option><option></option></select>
+    </div>
+    <div class="row">
+      <label>定时间隔</label>
+      <input type="text" class=" control-text"></label>
+    </div>
+    <div class="row">
+      <label class="checkbox">定时时间单位</label>
+      <select><option>秒</option><option>分</option></select>
+    </div>
+    <div class="row">
+      <label>定距时间间隔</label>
+      <input type="text" class=" control-text"></label>
+    </div>
+    <div class="row">
+      <label class="checkbox">定距时间单位</label>
+      <select><option>秒</option><option>分</option></select>
+     </div>
+    <div class="row">
+      <label>定距时间间隔</label>
+      <input type="text" class="control-text">
+    </div>
+  </div>
+    <div class="pagination-right actions-bar">
+      <button class="button">重置所有参数</button>
+      <button class="button button-info">查询所有参数</button>
+      <button class="button button-success">设置参数</button>
+    </div>
+
+</div>
+</body>
+</html>

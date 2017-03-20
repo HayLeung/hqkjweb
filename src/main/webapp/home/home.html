@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title></title>
+<link href="../assets/css/dpl-min.css" rel="stylesheet" type="text/css" />
+<link href="../css/home.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<!--头部统计信息 开始-->
+<div class="doc-content">
+  <div class="row-fluid">
+    <div class="span7">logo</div>
+    
+      <div class="counts shadow">
+        <span class="left blue">网</span>
+        <span class="right">
+          <p class="top text_blue">123456</p>
+          <p class="down">入网车辆总数</p>
+        </span>
+      </div>  
+      
+    
+      <div class="counts shadow">
+        <span class="left purple">月</span>
+        <span  class="right">
+          <p class="top text_purple">123456</p>
+          <p class="down">月上线率：100%</p>
+        </span>
+      </div>
+    
+      <div  class="counts shadow">
+        <span class="left yellow">日</span>
+        <span class="right">
+          <p class="top text_yellow">123456</p>
+          <p class="down">日上线率：100%</p>
+        </span>
+      </div>
+    
+      <div class="counts shadow">
+        <span  class="left green">在</span>
+        <span class="right">
+          <p class="top text_green">123456</p>
+          <p class="down">车辆在线率：100%</p>
+        </span>
+      </div>
+    
+      <div class="counts shadow">
+        <span class="left red">报</span>
+        <span class="right">
+          <p class="top text_red">123456</p>
+          <p class="down">车辆报警率：100%</p>
+        </span>
+      </div>
+
+  </div>
+</div>  
+<!-- 图型表-->
+<div class="doc-content shadow">
+    <div class="detail-section">
+      <div class="row-fluid">
+        <div class="span6">
+          <div id="tip" class="ac-tooltip">
+            <h3 class="ac-title"></h3>
+            <table class="table">
+              <thead>
+                <tr>
+                  <td>序号</td>
+                  <td>名称</td>
+                  <td>值（%）</td>
+                </tr>
+              </thead>
+              <tbody class="ac-list">
+                
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="span18">
+          <div id="canvas">
+ 
+          </div>
+        </div>
+      </div>
+      
+    </div>
+ 
+  <script src="../js/acharts.js"></script> 
+ 
+  <script type="text/javascript">
+  
+        var chart = new AChart({
+          id : 'canvas', //render改成 id
+          forceFit : true, //自适应宽 width : 750,
+          height : 400,
+          plotCfg : {
+            margin : [50,50,80] //画板的边距
+          },
+          xAxis : {
+            categories : ['2017-03-01','2017-03-02','2017-03-03','2017-03-04','2017-03-05','2017-03-06','2017-03-07','2017-03-08','2017-03-09','2017-03-10','2017-03-11','2017-03-12']
+          },
+          tooltip : {
+            valueSuffix : '%',
+            shared : true, //是否多个数据序列共同显示信息
+            custom : true, //自定义tooltip
+            html : '#tip',//自定义tooltip的 模板或者 #id
+            customFollow : false, //自定义tooltip不跟随移动
+            itemTpl : '<tr><td>{index}</td><td>{name}</td><td>{value}{suffix}</td></tr>',
+            crosshairs : true //是否出现基准线
+          },
+          series : [{
+            name: '上线率',
+            data: [7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6]
+          }, {
+            name: '查岗应答率',
+            data: [-0.2, 0.8, 5.7, 11.3, 17.0, 22.0, 24.8, 24.1, 20.1, 14.1, 8.6, 2.5]
+          }, {
+            name: '卫星漂移率',
+            data: [-0.9, 0.6, 3.5, 8.4, 13.5, 17.0, 18.6, 17.9, 14.3, 9.0, 3.9, 1.0]
+          }, {
+            name: '违规自查率',
+            data: [3.9, 4.2, 5.7, 8.5, 11.9, 15.2, 17.0, 16.6, 14.2, 10.3, 6.6, 4.8]
+          }, {
+            name: '轨迹完整率',
+            data: [13.9, 14.2, 15.7, 18.5, 21.9, 25.2, 27.0, 26.6, 24.2, 20.3, 16.6, 14.8]
+          }, {
+            name: '异常轨迹率',
+            data: [17.0, 16.9, 19.5, 24.5, 28.2, 31.5, 35.2, 36.5, 33.3, 28.3, 23.9, 19.6]
+          }]
+        });
+ 
+        chart.render();
+ 
+  </script>
+ 
+</div>
+<!--底部消息  开始-->
+<div class="doc-content foot">
+  <div class="row-fluid">
+    <div class="span7 shadow bgLeft">
+      <div class="actions-bar">待完成事项</div>
+      <ul>
+        <li>车辆报警：25次</li>
+        <li>当日未上线车辆：5台</li>
+        <li>查岗：2次</li>
+        <li>异常轨迹车辆：3台</li>
+        <li>卫星漂移车辆：1台</li>
+      </ul>
+    </div>
+    <div class="span7 shadow bgLeft2">
+      <div class="actions-bar">已完成事项</div>
+      <ul>
+        <li>车辆报警：25次</li>
+        <li>当日未上线车辆：5台</li>
+        <li>查岗：2次</li>
+        <li>异常轨迹车辆：3台</li>
+        <li>卫星漂移车辆：1台</li>
+      </ul>   
+    </div>
+    <div class="span9 shadow bgLeft3">
+      <div class="actions-bar">最新消息</div>
+      <ul>
+        <li>寰旗综合平台最新消息内容寰旗综合平台最新消息内容寰旗综合平台最新消息内容</li>
+        <li>寰旗综合平台最新消息内容寰旗综合平台最新消息内容</li>
+        <li>寰旗综合平台最新消息内容寰旗综合平台最新消息内容寰旗综合平台最新消息内容</li>
+        <li>寰旗综合平台最新消息内容寰旗综合平台最新消息内容</li>
+        <li>寰旗综合平台最新消息内容寰旗综合平台最新消息内容寰旗综合平台最新消息内容</li>
+      </ul>    
+    </div>
+  </div>
+</div>
+ 
+</body>
+</html>
+

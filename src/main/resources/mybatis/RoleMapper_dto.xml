@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hqkj.example.dao.RoleMapper" >
+    <resultMap id="roleMap" type="com.hqkj.example.entity.Role" >
+        <id column="role_id" property="roleId" jdbcType="INTEGER" />
+        <result column="role_name" property="roleName" jdbcType="VARCHAR" />
+        <result column="status" property="status" jdbcType="TINYINT" />
+    </resultMap>
+    <!--模糊查询和根据状态查询-->
+    <select id="query" resultMap="roleMap" parameterType="com.hqkj.example.entity.Role">
+          SELECT  role_id,role_name,status FROM ROLE WHERE 1=1
+          <if test="status !=null and status !='' ">
+              AND  status=#{status}
+          </if>
+
+          <if test="roleName !=null and roleName !='' ">
+            AND  role_name  LIKE  '%${roleName}%'
+          </if>
+    </select>
+
+    <delete id="deleteAll" >
+      delete from ROLE where role_id in
+      <foreach item="roleId" collection="roleIdList" open="(" separator="," close=")">
+        #{roleId}
+      </foreach>
+    </delete>
+</mapper>

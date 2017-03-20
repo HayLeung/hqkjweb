@@ -1,0 +1,275 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title></title>
+<link href="../assets/css/dpl-min.css" rel="stylesheet" type="text/css" />
+<link href="../assets/css/bui-min.css" rel="stylesheet" type="text/css" />
+<link href="../css/tab.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="../js/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="../js/tab.js"></script>
+<script src="../js/sea.js"></script><!--表格、弹出窗口所需-->
+<script src="../js/config.js"></script><!--表格、弹出窗口所需-->
+
+</head>
+<body>
+<div class="zzsc">
+  <div class="tab"> 
+    <a href="javascript:;" class="on">圆形区域</a> 
+    <a href="javascript:;">矩形区域</a> 
+    <a href="javascript:;">多边形区域</a> 
+    <a href="javascript:;">路线</a> 
+    <a href="javascript:;">已下发电子围栏</a> 
+  </div>
+  <div class="content2">
+    <ul>
+      <li style="display:block;">
+        <div class="actions-bar">
+          <div class="row">
+            <button class="button button-success button-small">更新区域</button>
+            <button class="button button-warning button-small">追加区域</button>
+            <button class="button button-warning button-small">修改区域</button>
+            <button class="button button-danger button-small">删除指定区域</button>
+            <button class="button button-danger button-small">删除所有区域</button>
+          </div>
+        </div>
+        <div class="demo-content">
+          <div id="grid"> </div>
+        <!-- script start --> 
+        <script type="text/javascript">
+              BUI.use(['bui/grid','bui/data'],function(Grid,Data){
+                var Grid = Grid,
+              Store = Data.Store,
+              columns = [
+                {title : '区域名称',dataIndex :'a', width:200},
+                {title : '半径',dataIndex :'', width:200},
+				{title : '备注',dataIndex :'', width:400},
+              ],
+              data = [{a:'中心',b:''},
+			          {a:'123',b:''},
+					  {a:'123',c:''}
+					  ];
+            var store = new Store({
+                data : data,
+                autoLoad:true
+              }),
+              grid = new Grid.Grid({
+                render:'#grid',
+                columns : columns,
+                store: store,
+				//forceFit: true,	// 列宽按百分比自适应
+                plugins : [Grid.Plugins.CheckSelection,Grid.Plugins.ColumnResize,Grid.Plugins.AutoFit]  
+              });
+     
+            grid.render();
+			
+          });
+        </script> 
+<!-- script end -->
+</div>
+      </li>
+      <li>
+        <div class="actions-bar">
+          <div class="row">
+            <button class="button button-success button-small">更新区域</button>
+            <button class="button button-warning button-small">追加区域</button>
+            <button class="button button-warning button-small">修改区域</button>
+            <button class="button button-danger button-small">删除指定区域</button>
+            <button class="button button-danger button-small">删除所有区域</button>
+          </div>
+        </div>
+        <div class="demo-content">
+          <div id="grid2"> </div>
+        <!-- script start --> 
+        <script type="text/javascript">
+              BUI.use(['bui/grid','bui/data'],function(Grid,Data){
+                var Grid = Grid,
+              Store = Data.Store,
+              columns = [
+                {title : '区域名称',dataIndex :'a', width:200},
+				{title : '备注',dataIndex :'', width:400},
+              ],
+              data = [{a:'中心',b:''},
+			          {a:'123',b:''},
+					  {a:'123',c:''}
+					  ];
+            var store = new Store({
+                data : data,
+                autoLoad:true
+              }),
+              grid = new Grid.Grid({
+                render:'#grid2',
+                columns : columns,
+                store: store,
+				//forceFit: true,	// 列宽按百分比自适应
+                plugins : [Grid.Plugins.CheckSelection,Grid.Plugins.ColumnResize,Grid.Plugins.AutoFit]  
+              });
+     
+            grid.render();
+			
+          });
+        </script> 
+<!-- script end -->
+</div>
+      </li>
+      <li>
+        <div class="actions-bar">
+          <div class="row">
+            <button class="button button-success button-small">更新区域</button>
+            <button class="button button-warning button-small">追加区域</button>
+            <button class="button button-warning button-small">修改区域</button>
+            <button class="button button-danger button-small">删除指定区域</button>
+            <button class="button button-danger button-small">删除所有区域</button>
+          </div>
+        </div>
+        <div class="demo-content">
+          <div id="grid3"> </div>
+        <!-- script start --> 
+        <script type="text/javascript">
+              BUI.use(['bui/grid','bui/data'],function(Grid,Data){
+                var Grid = Grid,
+              Store = Data.Store,
+              columns = [
+                {title : '区域名称',dataIndex :'a', width:200},
+				{title : '备注',dataIndex :'', width:400},
+              ],
+              data = [{a:'中心',b:''},
+			          {a:'123',b:''},
+					  {a:'123',c:''}
+					  ];
+            var store = new Store({
+                data : data,
+                autoLoad:true
+              }),
+              grid = new Grid.Grid({
+                render:'#grid3',
+                columns : columns,
+                store: store,
+				//forceFit: true,	// 列宽按百分比自适应
+                plugins : [Grid.Plugins.CheckSelection,Grid.Plugins.ColumnResize,Grid.Plugins.AutoFit]  
+              });
+     
+            grid.render();
+			
+          });
+        </script> 
+<!-- script end -->
+</div>      
+      </li>
+      <li>
+        <div class="actions-bar">
+          <div class="row">
+            <button class="button button-success button-small">更新区域</button>
+            <button class="button button-warning button-small">追加区域</button>
+            <button class="button button-warning button-small">修改区域</button>
+            <button class="button button-danger button-small">删除指定区域</button>
+            <button class="button button-danger button-small">删除所有区域</button>
+          </div>
+        </div>
+        <div class="demo-content">
+          <div id="grid4"> </div>
+        <!-- script start --> 
+        <script type="text/javascript">
+              BUI.use(['bui/grid','bui/data'],function(Grid,Data){
+                var Grid = Grid,
+              Store = Data.Store,
+              columns = [
+                {title : '线路名称',dataIndex :'a', width:200},
+				{title : '备注',dataIndex :'', width:400},
+              ],
+              data = [{a:'中心',b:''},
+			          {a:'123',b:''},
+					  {a:'123',c:''}
+					  ];
+            var store = new Store({
+                data : data,
+                autoLoad:true
+              }),
+              grid = new Grid.Grid({
+                render:'#grid4',
+                columns : columns,
+                store: store,
+				//forceFit: true,	// 列宽按百分比自适应
+                plugins : [Grid.Plugins.CheckSelection,Grid.Plugins.ColumnResize,Grid.Plugins.AutoFit]  
+              });
+     
+            grid.render();
+			
+          });
+        </script> 
+<!-- script end -->
+</div>      
+      </li>
+      <li>
+        <div class="actions-bar">
+          <div class="row">
+            <button class="button button-success button-small">更新</button>
+          </div>
+        </div>
+        <div class="demo-content">
+          <div id="grid5"> </div>
+        <!-- script start --> 
+        <script type="text/javascript">
+              BUI.use(['bui/grid','bui/data'],function(Grid,Data){
+                var Grid = Grid,
+              Store = Data.Store,
+              columns = [
+                {title : '区域名称',dataIndex :'a', width:200},
+                {title : '终端名称',dataIndex :'', width:200},
+                {title : '区域类型',dataIndex :'', width:200},
+                {title : '下发人',dataIndex :'', width:200},
+                {title : '下发时间',dataIndex :'', width:200},
+              ],
+              data = [{a:'中心',b:''},
+			          {a:'123',b:''},
+					  {a:'123',c:''}
+					  ];
+            var store = new Store({
+                data : data,
+                autoLoad:true
+              }),
+              grid = new Grid.Grid({
+                render:'#grid5',
+                columns : columns,
+                store: store,
+				//forceFit: true,	// 列宽按百分比自适应
+                plugins : [Grid.Plugins.CheckSelection,Grid.Plugins.ColumnResize,Grid.Plugins.AutoFit]  
+              });
+     
+            grid.render();
+			
+          });
+        </script> 
+<!-- script end -->
+</div>      
+      </li>
+    </ul>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

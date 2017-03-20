@@ -1,0 +1,406 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title></title>
+<link href="../assets/css/dpl-min.css" rel="stylesheet" type="text/css" />
+<link href="../assets/css/bui-min.css" rel="stylesheet" type="text/css" />
+<link href="../css/tab.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="../js/jquery-1.9.1.min.js"></script>
+<script src="../js/sea.js"></script><!--表格、弹出窗口所需-->
+<script src="../js/config.js"></script><!--表格、弹出窗口所需-->
+<script src="../js/alert_pop.js"></script><!--弹出窗口-->  
+<!--<script src="../js/tree2.js"></script>&lt;!&ndash;弹出窗口中树形列表&ndash;&gt;-->
+<script src="../operate/ulit/publicEvent.js"></script>
+</head>
+<body>
+<script type="text/javascript">
+    var role;//用户角色类
+    seajs.use(["../operate/yunyingguanli/role.js","../operate/config.js"],function (rolei) {
+        //  console.log(configi,rolei);
+        role=rolei;
+    });
+ </script>
+
+<!--角色  开始-->
+<div class="main">
+<!--表格头部按钮及筛选条件  开始-->
+<div class="actions-bar">
+  <form id="searchForm" class="form-horizontal">
+    <div class="row">
+      <span>角色：</span>
+      <button class="button button-success button-small role_new" type="button">添加</button>
+      <button class="button button-danger button-small" onclick="role.delSelectAll()" type="button">删除</button>
+      <input type="text" class="control-text" placeholder="查询输入关键字" name="roleName" >
+      <button class="button button-info button-small" type="submit">查询</button>
+      <button class="button button-small" onclick="btnReset('roleName');" type="button">重置</button>
+    </div>
+  </form>
+</div>
+<!--表格头部按钮及筛选条件  结束-->
+<div class="demo-content">
+<!--表格  开始-->
+  <div id="grid"> </div>
+  <script type="text/javascript">
+      BUI.use(['bui/grid','bui/data',
+          'bui/form',
+          '../operate/config.js',
+          '../operate/yunyingguanli/role.js'],function(Grid,Data,Form,config,role){
+          var Grid = Grid,
+              Store = Data.Store,
+              columns = [
+                  {title : '操作',dataIndex :'roleId', width:100,
+                      renderer : function (roleId) {
+                          return '<input type="hidden" id="id" value="'+roleId+'"><span class="a role_edit">编辑</span>|<span class="a role_del" onclick=" del()">删除</span>'
+                      },
+                  },
+                  {title : '角色名称',dataIndex :'roleName', width:100},
+                  //{title : '父角色',dataIndex :'c', width:100},
+                  {title : '描述',dataIndex :'status', width:100},
+                  {title : '操作权限',dataIndex :'e', width:100,
+                      renderer : function (val) {
+                          return '<span class="a role_edit">预览</span>'
+                      },
+                  },
+              ];
+
+          //分页查询
+          var store = new Store({
+                  ///  data : data,	// 前端分页 数据一定是静态数据瓬4,
+                  url:config.path+'/role/queryPage.action',
+                  proxy : {
+                      method : 'post',//post请求
+                      dataType : 'json',//json格式数据
+                      pageStart : 1,//从第一页开始
+                  },
+                  to: true,
+                  root:'data',//数据集合名
+                  totalProperty:'total',//存放记录总数
+                  pageSize : 5,//每页大小
+                  autoLoad:true  //加载表格时加载数据
+              }),
+
+              grid = new Grid.Grid({
+                  render:'#grid',
+                  width:'100%',
+                  columns : columns,
+                  loadMask: true, //加载数据时显示屏蔽层
+                  plugins : [role.roleEdit(Grid),Grid.Plugins.CheckSelection,Grid.Plugins.ColumnResize],
+                  // 底部工具栏
+                  bbar:{
+                      // pagingBar:表明包含分页栏
+                    /*pagingBar: {bv
+                     xclass: 'pagingBar'
+                     }*/
+                      pagingBar:true
+                  },
+                  listeners: {
+                      cellclick: function (ev) { //监听点击事件
+                          var record = ev.record, //行的数据
+                              field = ev.field, //点击对应列的dataIndex
+                              target = $(ev.domTarget); //点击的元素
+                          var roleId=record.roleId;//角色ID
+                          console.log("删除");
+                          //删除
+                          if (target.hasClass('role_del')) {
+                             role.del(roleId);
+                          }
+                      }
+                  },
+                  store : store
+              });
+
+          //错误信息
+          store.on('exception',function (ev) {
+              BUI.Message.Alert(ev.error);
+          });
+          stores=store;
+          grid.render();//加载数据
+          //创建表单，表单中的日历，不需要单独初始化
+          var form = new BUI.Form.HForm({
+              srcNode : '#searchForm'
+          }).render();
+          //表单提交处理
+          form.on('beforesubmit',function(ev) {
+              //序列化成对象
+              var obj = form.serializeToObject();
+              obj.start = 0; //返回第一页
+              obj.pageIndex=0;//第一页开始
+              store.load(obj);
+              return false;
+          });
+          ///绑定编辑删除时的节点树
+          role.loadTree();
+      });
+        </script> 
+<!-- 表格  结束 -->
+  
+  <!-- 此节点内部的内容会在弹出框内显示,默认隐藏此节点 编辑弹出框 id与下面js中取的对应-->
+  <div id="role_edit_content" style="display:none;">
+    <div class="row-fluid">
+        <form class="form-horizontal">
+        <input type="hidden" name="roleId">
+        <div class="span11">
+          <div class="control-group">
+            <label class="control-label"><s>*</s>角色名称：</label>
+            <div class="controls"><input class="input-normal control-text" type="text" name="roleName"></div>
+          </div>
+          <div class="control-group">
+            <label class="control-label">备注：</label>
+            <div class="controls  control-row4"><textarea class="textarea_h"></textarea></div>
+          </div>
+        </div>
+        <div class="span11">
+          <div class="actions-bar">操作权限（权限树形列表）</div>
+          <!--树形列表-->
+          <div id="roleTreeEdit" class="role" ></div>
+        </div>
+        </form>
+      </div>
+  </div>
+  <!-- 此节点内部的内容会在弹出框内显示,默认隐藏此节点 添加弹出框 id与下面js中取的对应-->
+  <div id="role_new_content" style="display:none;">
+    <div class="row-fluid">
+        <form class="form-horizontal">
+        <div class="span11">
+          <div class="control-group">
+            <label class="control-label"><s>*</s>角色名称：</label>
+            <div class="controls"><input class="input-normal control-text" type="text"></div>
+          </div>
+          <div class="control-group">
+            <label class="control-label">备注：</label>
+            <div class="controls  control-row4"><textarea class="textarea_h"></textarea></div>
+          </div>
+        </div>
+        <div class="span11">
+          <div class="actions-bar">操作权限（分组树形列表）</div>
+          <!--树形列表-->
+          <div id="roleTreeAdd" class="role"></div>
+        </div>
+        </form>
+      </div>
+  </div>
+</div>
+</div>
+<!--角色  结束-->
+<!--用户  开始-->
+<div class="main">
+<!--表格头部按钮及筛选条件  开始-->
+<div class="actions-bar">
+  <div class="row">
+    <span>用户：</span>
+    <button class="button button-success button-small user_new">添加</button>
+    <button class="button button-danger button-small">删除</button>
+    <label>类型：</label>
+    <select>
+      <option>管理员</option><option>代理商</option><option>企业</option><option>子企业</option>
+    </select>
+    <input type="text" class="control-text" placeholder="查询输入关键字">
+    <button class="button button-info button-small">查询</button>
+    <button class="button button-small">重置</button>
+  </div>
+</div>
+<!--表格头部按钮及筛选条件  结束-->
+
+<div class="demo-content" style=" float:left;">
+<!--表格  开始-->
+  <div id="grid2"> </div>
+  <script type="text/javascript">
+              BUI.use(['bui/grid',
+                  'bui/data',
+                   'bui/form',
+                  '../operate/config.js',
+                  '../operate/yunyingguanli/role.js'],
+                  function(Grid,Data,Form,config,role){
+                var Grid = Grid,
+              Store = Data.Store,
+              columns = [
+                {title : '操作',dataIndex :'userId', width:100,
+                    renderer : function (userId) {
+                        return '<input type="hidden" id="id" value="'+userId+'"><span class="a role_edit">编辑</span>|<span class="a role_del">删除</span>'
+                    },},
+                {title : '姓名',dataIndex :'personName', width:100},
+				{title : '账号',dataIndex :'userName', width:100},
+				{title : '所属角色',dataIndex :'roleName', width:100},
+				{title : '类型',dataIndex :'userType', width:100,
+                    renderer : function (userType) {
+                    var userTypeStr="";
+                    switch (userType)
+                    {
+                        case  0:
+                            userTypeStr="管理员"
+                            break;
+                        case  1:
+                            userTypeStr="代理商"
+                            break;
+                        case  0:
+                            userTypeStr="企业"
+                            break;
+                    }
+                    return userTypeStr;
+                },},
+				{title : '分组名称',dataIndex :'e', width:100},
+				{title : '电话',dataIndex :'g', width:100},
+				{title : '邮箱',dataIndex :'h', width:100},
+				{title : '备注',dataIndex :'i', width:100},
+              ],
+              data = [{a:'<span class="a user_edit">编辑</span>|<span class="a">删除</spa'},//,e:'<span class="a">预览</span>'
+			          {a:'<span class="a user_edit">编辑</span>|<span class="a">删除</spa',b:'edd'},
+					  {a:'<span class="a user_edit">编辑</span>|<span class="a">删除</spa',c:'eee',d:2}
+					  ];
+			//分页
+			var store = new Store({
+                    url:config.path+'/user/queryUserList.action',
+                    proxy : {
+                        method : 'post',//post请求
+                        dataType : 'json',//json格式数据
+                        pageStart : 1,//从第一页开始
+                    },
+                    to: true,
+                    root:'list',//数据集合名
+                    totalProperty:'total',//存放记录总数
+                    pageSize : 5,//每页大小
+                    autoLoad:true  //加载表格时加载数据
+          }),
+          grid = new Grid.Grid({
+            render:'#grid2',
+			 width:'100%',
+            columns : columns,
+			height: $(window).height()/2-43,	
+			plugins : [Grid.Plugins.CheckSelection,Grid.Plugins.ColumnResize],
+            // 底部工具栏
+            bbar:{
+            pagingBar:true
+            },
+            store : store
+          });
+        grid.render();
+			
+          });
+        </script> 
+<!-- 表格  结束 -->
+  <!-- 此节点内部的内容会在弹出框内显示,默认隐藏此节点 编辑弹出框 id与下面js中取的对应-->
+  <div id="user_edit_content" style="display:none;">
+    <div class="row-fluid">
+        <form class="form-horizontal">
+        <div class="span11">
+          <div class="control-group">
+            <label class="control-label"><s>*</s>姓名：</label>
+            <div class="controls"><input class="input-normal control-text" type="text"></div>
+          </div>
+          
+          <div class="control-group">
+            <label class="control-label"><s>*</s>账号：</label>
+            <div class="controls"><input class="input-normal control-text" type="text"></div>
+          </div>
+          
+          <div class="control-group">
+            <label class="control-label"><s>*</s>密码：</label>
+            <div class="controls"><input class="input-normal control-text" type="text"></div>
+          </div>
+          
+          <div class="control-group">
+            <label class="control-label"><s>*</s>所属角色：</label>
+            <div class="controls"><input class="input-normal control-text" type="text"></div>
+          </div>
+          
+          <div class="control-group">
+            <label class="control-label"><s>*</s>类型：</label>
+            <div class="controls">
+            <select class="input-normal">
+              <option>管理员</option><option>代理商</option><option>企业</option><option>子企业</option>
+            </select>
+            </div>
+          </div>
+          
+          <div class="control-group">
+            <label class="control-label">电话：</label>
+            <div class="controls"><input class="input-normal control-text" type="text"></div>
+          </div>
+ 
+          <div class="control-group">
+            <label class="control-label">邮箱：</label>
+            <div class="controls"><input class="input-normal control-text" type="text"></div>
+          </div>
+          
+          <div class="control-group">
+            <label class="control-label">描述：</label>
+            <div class="controls  control-row4"><textarea></textarea></div>
+          </div>
+        </div>
+        <div class="span11">
+          <div class="actions-bar"><input type="text" class="control-text" placeholder="分组树形列表">
+          <button class="button button-info button-small">查询</button></div>
+          <!--树形列表-->
+          <div id="tree3" class="user"></div>
+        </div>
+        </form>
+      </div>
+  </div>
+  <!-- 此节点内部的内容会在弹出框内显示,默认隐藏此节点 添加弹出框 id与下面js中取的对应-->
+  <div id="user_new_content" style="display:none;">
+        <div class="row-fluid">
+        <form class="form-horizontal">
+        <div class="span11">
+          <div class="control-group">
+            <label class="control-label"><s>*</s>姓名：</label>
+            <div class="controls"><input class="input-normal control-text" type="text"></div>
+          </div>
+          
+          <div class="control-group">
+            <label class="control-label"><s>*</s>账号：</label>
+            <div class="controls"><input class="input-normal control-text" type="text"></div>
+          </div>
+          
+          <div class="control-group">
+            <label class="control-label"><s>*</s>密码：</label>
+            <div class="controls"><input class="input-normal control-text" type="text"></div>
+          </div>
+          
+          <div class="control-group">
+            <label class="control-label"><s>*</s>所属角色：</label>
+            <div class="controls"><input class="input-normal control-text" type="text"></div>
+          </div>
+          
+          <div class="control-group">
+            <label class="control-label"><s>*</s>类型：</label>
+            <div class="controls">
+            <select class="input-normal">
+              <option>管理员</option><option>代理商</option><option>企业</option><option>子企业</option>
+            </select>
+            </div>
+          </div>
+          
+          <div class="control-group">
+            <label class="control-label">电话：</label>
+            <div class="controls"><input class="input-normal control-text" type="text"></div>
+          </div>
+ 
+          <div class="control-group">
+            <label class="control-label">邮箱：</label>
+            <div class="controls"><input class="input-normal control-text" type="text"></div>
+          </div>
+          
+          <div class="control-group">
+            <label class="control-label">描述：</label>
+            <div class="controls  control-row4"><textarea></textarea></div>
+          </div>
+        </div>
+        <div class="span11">
+          <div class="actions-bar">
+            <input type="text" class="control-text" placeholder="车辆分组树形列表">
+            <button class="button button-info button-small">查询</button>
+          </div>
+          <!--树形列表-->
+          <div id="tree4" class="user"></div>
+        </div>
+        </form>
+      </div>
+  </div>
+
+</div>
+<!--用户  结束-->
+
+</div>
+</body>
+</html>

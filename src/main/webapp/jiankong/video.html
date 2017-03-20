@@ -1,0 +1,78 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>首页</title>
+<link rel="stylesheet" href="../font/css/font-awesome.css"/><!--图片-->
+<style type="text/css">
+* {margin:0;padding:0;list-style:none; border:0;}
+body {font:normal 12px/22px "宋体"; background:#fff; color:#333;}
+.head{ width:500px; margin:0 auto;}
+.inp,.but{ width:100%; float:left; margin-top:15px;}
+.inp .left,.inp .right{ width:50%; float:left; height:30px; }
+input,select{ border:1px solid #ddd;cursor:pointer; padding:3px;}
+input{ width:160px;}
+select,.right button{ width:80px; float:left; margin-left:10px; text-align:center;}
+.but button{ padding:3px 15px; margin-right:10px; float:left; border:none; background:#014694; color:#fff;cursor:pointer;}
+.right button{ background:#ddd;cursor:pointer; padding:1px 0;}
+
+.arr{width:10px; height:100%; background:#e8e9ee; position:absolute; top:0; right:0; z-index:100;cursor:pointer; display:none;display:block\9;width:10px\9; }
+.arr button{ border:none;}
+.arr button .fa{ position:absolute; top:53%; padding:13px 0; left:3px; background:#fff; color:#769cce; border:1px solid #769cce;top:400px\9;}
+@media (max-width: 15px) {
+.arr{ display:block;}
+}
+@media (min-width: 15px) {
+.arr{ display:none;}
+}
+</style>
+</head>
+<body>
+<!--头部选项设置(可替换)  开始-->
+<h1 style="width:100%; text-align:center; margin-top:15px;">临时展示效果</h1>
+<div class="head">
+  <div class="inp">
+    <div class="left">车牌号：<input type="text"/></div>
+    <div class="right">
+      <button>4路</button>
+      <button>9路</button>
+    </div> 
+    <div class="left">设备号：<input type="text"/></div>
+    <div class="right">
+      <select>
+        <option>窗口1</option>
+        <option>窗口2</option>
+        <option>窗口3</option>
+        <option>窗口4</option>
+      </select>
+      <select>
+        <option>摄像头1</option>
+        <option>摄像头2</option>
+        <option>摄像头3</option>
+        <option>摄像头4</option>
+      </select>
+    </div> 
+  </div>
+  <div class="but">
+    <button>播放</button>
+    <button>关闭</button>
+    <button>截图</button>
+    <button>全部关闭</button>
+    <button>截取磁盘录像</button>
+  </div>
+</div>
+<!--头部选项设置  结束-->
+<!--显示/隐藏按钮（内容不可替换）  开始-->
+<div class="arr"  onClick="window.parent.document.getElementById('target_top').cols='50%,*';">
+<button><i class="fa fa-caret-right"></i></button>
+</div>
+<script>
+	window.onresize=function(){
+		if(window.innerWidth<20){
+			window.parent.document.getElementById('target_top').cols='10px,*';
+		}
+	}
+</script>
+<!--显示/隐藏按钮（内容不可替换）  结束-->
+</body>
+</html>

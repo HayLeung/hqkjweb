@@ -1,0 +1,66 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>首页</title>
+<link rel="stylesheet" href="../font/css/font-awesome.css"/><!--图片-->
+<style type="text/css">
+* {margin:0;padding:0;list-style:none;}
+html{width:100%; height:100%;}
+body{ width:100%; height:100%;}
+.map{ height:100%;}
+.map .head{ width:100%; min-width:600px; position:fixed; top:0; background:#E8E9EE;border-top:1px solid #ddd; border-bottom:1px solid #ddd; overflow:hidden; padding-left:10px;}
+.map .head li{ float:left; margin-right:22px;}
+.map .head li button{ width:25px; height:25px; text-align:center; float:left;cursor:pointer; margin:3px; background:#eee; border:1px solid #fff; color:#898989; font-size:16px;}
+.map .head li button:hover{ background:#fff;border:1px solid #898989;color:#0068b7;}
+.arr{ float:left; width:10px; height:100%; background:#e8e9ee; position:absolute; top:0; left:0; z-index:100;cursor:pointer; display:none;display:block\9;width:10px\9}
+.arr button{ border:none;}
+.arr button .fa{ position:absolute; top:52%; padding:13px 0; left:1px; background:#fff; color:#769cce; border:1px solid #769cce;top:400px\9;}
+@media (max-width: 15px) {
+.arr{ display:block;}
+.arr{ display:block\9;}
+}
+</style>
+</head>
+<body class="map">
+<!--头部选项设置  开始-->
+<ul class="head">
+  <li>
+  <button title="移动"><i class="fa fa-hand-o-up"></i></button>
+  <button title="放大"><i class="fa fa-search-plus"></i></button>
+  <button title="缩小"><i class="fa fa-search-minus"></i></button>
+  <button title="测距"><i class="fa fa-expand"></i></button>
+  </li>
+  <li>
+  <button title="标注点"><i class="fa fa-thumb-tack"></i></button>
+  <button title="绘制线"><i class="fa fa-italic"></i></button>
+  <button title="绘制矩形"><i class="fa fa-square-o"></i></button>
+  <button title="绘制圆形"><i class="fa fa-circle-o"></i></button>
+  <button title="绘制多边形"><i class="fa fa-cube"></i></button>
+  </li>
+  <li>
+  <button title="矩形选择"><i class="fa fa-check-square-o"></i></button>
+  <button title="圆形选择"><i class="fa fa-check-circle"></i></span></button>
+  <button title="清空所有"><i class="fa fa-times-circle"></i></button>
+  <button title="清除轨迹线"><i class="fa fa-trash"></i></button>
+  </li>
+  <li>
+  <button title="返回默认视野"><i class="fa fa-home"></i></button>
+  <button title="保存当前视野"><i class="fa fa-floppy-o"></i></button>
+  </li>
+</ul>
+<!--头部选项设置  结束-->
+<!--显示/隐藏按钮  开始-->
+<div class="arr"  onClick="window.parent.document.getElementById('target_top').cols='*,50%';">
+<button><i class="fa fa-caret-left"></i></button>
+</div>
+<script>
+	window.onresize=function(){
+		if(window.innerWidth<20){
+			window.parent.document.getElementById('target_top').cols='*,10px';
+		}
+	}
+</script>
+<!--显示/隐藏按钮  结束-->
+</body>
+</html>

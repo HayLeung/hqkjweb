@@ -1,0 +1,78 @@
+    <!DOCTYPE html>
+    <html>
+    <head>
+    <meta charset="utf-8">
+    <title></title>
+<link href="../assets/css/dpl-min.css" rel="stylesheet" type="text/css" />
+<link href="../assets/css/bui-min.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="../js/jquery-1.9.1.min.js"></script>
+<script src="../js/sea.js"></script><!--表格、弹出窗口所需-->
+<script src="../js/config.js"></script><!--表格、弹出窗口所需-->
+    </head>
+    <body>
+      <div class="demo-content">
+        <div class="row">
+          <div class="span16">
+            <div id="grid6">
+              
+            </div>
+          </div>
+        </div>
+        <p class="row">
+          <form class="span8 offset3" id="J_Form" action="" method="post">
+            <input type="hidden" name="gridValue">
+            <button type="sumbmit" class="button button-primary">提交</button>
+          </form>
+        </p>
+        
+     
+      <script src="http://g.alicdn.com/bui/bui/1.1.21/config.js"></script>
+     
+    <!-- script start --> 
+        <script type="text/javascript">
+            BUI.use(['bui/grid','bui/data'],function(Grid,Data){
+                var 
+              Store = Data.Store,
+              columns = [
+                {title : '文本',dataIndex :'a',}, //editor中的定义等用于 BUI.Form.Field.Text的定义
+                {title : '数字', dataIndex :'b',editor : {xtype : 'number',rules : {required : true}}},
+                {title : '数字', dataIndex :'b',editor : {xtype : 'number',rules : {required : true}}},
+                {title : '数字', dataIndex :'b',editor : {xtype : 'number',rules : {required : true}}},
+                {title : '数字', dataIndex :'b',editor : {xtype : 'number',rules : {required : true}}},
+                {title : '数字', dataIndex :'b',editor : {xtype : 'number',rules : {required : true}}},
+                {title : '数字', dataIndex :'b',editor : {xtype : 'number',rules : {required : true}}},
+                {title : '数字', dataIndex :'b',editor : {xtype : 'number',rules : {required : true}}},
+                {title : '数字', dataIndex :'b',editor : {xtype : 'number',rules : {required : true}}},
+                {title : '数字', dataIndex :'b',editor : {xtype : 'number',rules : {required : true}}},
+                {title : '数字', dataIndex :'b',editor : {xtype : 'number',rules : {required : true}}},
+              ],
+              data = [{a:'123',},{a:'cdd',},{a:'1333'}];
+            var editing = new Grid.Plugins.CellEditing({
+              triggerSelected : false //触发编辑的时候不选中行
+            }),
+              store = new Store({
+                data : data,
+                autoLoad:true
+              }),
+              grid = new Grid.Grid({
+                render:'#grid6',
+                columns : columns,
+                width : 300,
+                forceFit : true,
+                plugins : [Grid.Plugins.CheckSelection,editing,Grid.Plugins.ColumnChecked],
+                store : store
+              });
+     
+            grid.render();
+     
+            function validFn (value,obj) {
+              var records = store.getResult(),
+                rst = '';
+              return rst;
+            }
+          });
+        </script>
+    <!-- script end -->
+      </div>
+    </body>
+    </html>

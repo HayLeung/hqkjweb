@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hqkj.example.dao.DeviceinputMapper" >
+  <resultMap id="deviceinputMap" type="com.hqkj.example.entity.Deviceinput">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="deviceid" jdbcType="VARCHAR" property="deviceid" />
+    <result column="deviceid_type" jdbcType="INTEGER" property="deviceidType" />
+    <result column="is_video" jdbcType="TINYINT" property="isVideo" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="status" jdbcType="TINYINT" property="status" />
+    <result column="input_time" jdbcType="TIMESTAMP" property="inputTime" />
+    <result column="use_time" jdbcType="TIMESTAMP" property="useTime" />
+    <result column="operation_status" property="operationStatus" />
+  </resultMap>
+
+  <sql id="validation">
+      /*校验设备型号*/
+      <if test="deviceidType != null and deviceidType != ''">
+          and deviceid_type = #{deviceidType}
+      </if>
+      /*校验状态*/
+      <if test="status != null and status != ''">
+          and  status = #{status}
+      </if>
+      /*开始操作时间*/
+      <if test="startTime != null and startTime != ''">
+          and use_time <![CDATA[  >=  ]]>  #{startTime}
+      </if>
+      /*结束操作时间*/
+      <if test="stopTime != null and stopTime != ''">
+          and use_time <![CDATA[  <=  ]]>  #{startTime}
+      </if>
+      /*校验设备ID和代理商*/
+      <if test="searchContent != null and searchContent != ''">
+          and (deviceid like concat('%',#{searchContent},'%') OR user_id = #{searchContent})
+      </if>
+  </sql>
+
+
+   <!--分页显示设备信息-->
+  <select id="queryDeviceinputList" parameterType="java.util.Map" resultMap="deviceinputMap">
+    select * from deviceinput where 1=1
+    <include refid="validation"/>
+    and operation_status = 0
+  </select>
+
+
+  <!--校验设备ID是否存在-->
+  <select id="queryDeviceinputExist" parameterType="java.util.Map" resultType="java.lang.Integer">
+      SELECT count(id) from deviceinput where deviceid = #{deviceid}
+      <if test="id != null and id != ''">
+        and id <![CDATA[ <> ]]> #{id}
+      </if>
+      and operation_status = 0
+  </select>
+
+
+  <!--删除设备：批量、单个-->
+  <update id="delDeviceinput" parameterType="java.lang.String">
+      update deviceinput set operation_status =  1 WHERE id in(${id})
+  </update>
+
+
+</mapper>
